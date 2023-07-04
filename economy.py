@@ -81,7 +81,7 @@ dfcpi = df["CPI"]
 
 dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
 
-dfcpi["Date"] = dfcpi["Date"].dt.date()
+dfcpi["Date"] = dfcpi["Date"].date()
 
 st.write(dfcpi)
 
