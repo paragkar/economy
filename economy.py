@@ -42,3 +42,42 @@ from deta import Deta
 
 #Set page layout here
 st.set_page_config(layout="wide")
+
+
+#--------hide streamlit style and buttons--------------
+
+hide_st_style = '''
+				<style>
+				#MainMenu {visibility : hidden;}
+				footer {visibility : hidder;}
+				header {visibility :hidden;}
+				<style>
+				'''
+st.markdown(hide_st_style, unsafe_allow_html =True)
+
+
+@st.cache_resource
+def loadecofile():
+
+	password = st.secrets["db_password"]
+
+	excel_content = io.BytesIO()
+
+	with open("economic_data.xlsx", 'rb') as f:
+		excel = msoffcrypto.OfficeFile(f)
+		excel.load_key(password)
+		excel.decrypt(excel_content)
+
+	#loading data from excel file
+	xl = pd.ExcelFile(excel_content)
+	sheet = xl.sheet_names
+	df = pd.read_excel(excel_content, sheet_name=sheet)
+
+	return df
+
+df = loadecofile()
+
+st.write(df)
+
+
+
