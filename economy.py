@@ -83,7 +83,7 @@ dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
 
 dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
 
-st.write(dfcpi)
+dfcpi = dfcpi.set_index("Date")
 
 
 
