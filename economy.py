@@ -77,7 +77,7 @@ def loadecofile():
 
 df = loadecofile()
 
-st.write(df)
+st.write(df["CPI"])
 
 
 
