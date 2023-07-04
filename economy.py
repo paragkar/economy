@@ -77,7 +77,11 @@ def loadecofile():
 
 df = loadecofile()
 
-st.write(df["CPI"])
+dfcpi = df["CPI"]
+
+dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
+
+st.write(dfcpi)
 
 
 
