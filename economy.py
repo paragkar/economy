@@ -112,7 +112,7 @@ dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =sel
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
-no_of_days = (end_date - start_date).days
+no_of_months = (end_date - start_date).months
 
 date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
 
@@ -128,12 +128,10 @@ years = sorted(set([x.year for x in list(dfindex.columns)]))
 x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Index Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Index Trend<b>"}
 
-st.write(no_of_days)
+st.write(no_of_months)
 if no_of_days <= 30:
-	st.write(True)
 	texttemplate ="%{z}"
 else:
-	st.write(False)
 	texttemplate =""
 
 data = [go.Heatmap(
