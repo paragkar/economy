@@ -103,8 +103,8 @@ dfindex = dfindex.drop("General")
 
 years = sorted(set([x.year for x in list(dfindex.columns)]))
 
-x_axis_title_dict = {"RuralIndex":"Indian CPI Rural Index Trend", "UrbanIndex":"Indian CPI Urban Index Trend", "CombIndex":
-					"Indian CPI Combined Index Trend"}
+x_axis_title_dict = {"<b>RuralIndex":"Indian CPI Rural Index Trend<b>", "<b>UrbanIndex":"Indian CPI Urban Index Trend<b>", "CombIndex":
+					"<b>Indian CPI Combined Index Trend<b>"}
 
 data = [go.Heatmap(
 		z=dfindex.values,
