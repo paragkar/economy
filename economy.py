@@ -142,8 +142,8 @@ years = sorted(set([x.year for x in list(dfindex.columns)]))
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
 
-x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Inflation Trend<b>", "CombIndex":
-					"<b>Indian CPI Combined Inflation Trend<b>"}
+x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
+					"<b>Indian CPI Combined % Inflation Trend<b>"}
 
 if no_of_months <= 36:
 	texttemplate ="%{z:.1f}"
