@@ -137,9 +137,9 @@ dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-dfindex = dfindex.drop("General")
+# dfindex = dfindex.drop("General")
 
-dfinflation = dfinflation.drop("General")
+# dfinflation = dfinflation.drop("General")
 
 dates = dfindex.columns
 
