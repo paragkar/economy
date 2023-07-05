@@ -146,7 +146,7 @@ x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural Inflation Trend<b>", "Ur
 					"<b>Indian CPI Combined Inflation Trend<b>"}
 
 if no_of_months <= 36:
-	texttemplate ="%{z}"
+	texttemplate ="%{z:.1f}"
 else:
 	texttemplate =""
 
