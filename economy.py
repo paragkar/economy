@@ -99,7 +99,7 @@ dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
 years = [x.year for x in list(dfrural.columns)]
 
-st.write(years)
+st.write(set(years))
 
 data = [go.Heatmap(
 		z=dfrural.values,
