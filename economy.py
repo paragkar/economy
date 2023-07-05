@@ -108,7 +108,7 @@ data = [go.Heatmap(
 		hoverinfo ='text',
 		text = dfrural.values,
 		colorscale="Picnic",
-			# texttemplate="%{text}",
+			texttemplate="%{text}",
 			textfont={"size":10},
 			# reversescale=True,
 			),
@@ -133,7 +133,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  tickangle=-90,
+				  tickangle=0,
 				  dtick = 1), 
 				)
 
