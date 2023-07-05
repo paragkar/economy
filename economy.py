@@ -207,9 +207,9 @@ fig1.update_layout(uniformtext_minsize=14,
 				  	  tickfont=dict(size=12)),
 				  xaxis = dict(
 				  side = 'top',
-				  tickmode = 'array',
+				  tickmode = 'linear',
 				  # tickvals = years,
-				  tickformat='<b>%Y-%m-%d<b>',
+				  tickformat='<b>%Y-%m<b>',
 				  tickangle=0,
 				  dtick = 0), 
 				)
@@ -232,9 +232,9 @@ fig2.update_layout(uniformtext_minsize=14,
 				  	  tickfont=dict(size=12)),
 				  xaxis = dict(
 				  side = 'top',
-				  tickmode = 'array',
+				  tickmode = 'linear',
 				  # tickvals = years,
-				  tickformat='<b>%Y-%m-%d<b>',
+				  tickformat='<b>%Y-%m<b>',
 				  tickangle=0,
 				  dtick = 0), 
 				)
