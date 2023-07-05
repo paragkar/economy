@@ -118,6 +118,7 @@ dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*1
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
+
 tab1, tab2 = st.tabs("Select a Metric", ["Price Index", "Price Inflation"])
 
 delta = relativedelta(end_date, start_date)
@@ -248,9 +249,12 @@ fig1.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black
 fig2.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 fig2.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-
-tab1.plotly_chart(fig1, use_container_width=True)
-tab2.plotly_chart(fig2, use_container_width=True)
+#Final plotting of various charts on the output page
+style = "<style>h3 {text-align: left;}</style>"
+with st.container():
+	#plotting the main chart
+	tab1.plotly_chart(fig1, use_container_width=True)
+	tab2.plotly_chart(fig2, use_container_width=True)
 
 
 
