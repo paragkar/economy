@@ -127,6 +127,8 @@ date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_
 
 dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 
+dfinflation = dfinflation[date_range_list] #filter the dataframe with the selected dates
+
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
