@@ -210,7 +210,7 @@ fig1.update_layout(uniformtext_minsize=14,
 				  tickmode = 'array',
 				  tickvals = dates,
 				  tickformat='<b>%Y-%m<b>',
-				  tickangle=0,
+				  tickangle=-45,
 				  dtick = 0), 
 				)
 
@@ -235,7 +235,7 @@ fig2.update_layout(uniformtext_minsize=14,
 				  tickmode = 'array',
 				  tickvals = dates,
 				  tickformat='<b>%Y-%m<b>',
-				  tickangle=0,
+				  tickangle=-45,
 				  dtick = 0), 
 				)
 
