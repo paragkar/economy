@@ -97,7 +97,7 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
-years = [x.year() for x in list(dfrural.columns)]
+years = [x.year for x in list(dfrural.columns)]
 
 st.write(years)
 
