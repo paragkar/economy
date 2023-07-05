@@ -154,9 +154,10 @@ data = [go.Heatmap(
 
 fig = go.Figure(data=data)
 
-fig.update_layout(uniformtext_minsize=20, 
+fig.update_layout(uniformtext_minsize=14, 
 				  uniformtext_mode='hide', 
-				  xaxis_title= x_axis_title_dict[selected_feature], 
+				  xaxis_title= x_axis_title_dict[selected_feature],
+				  xaxis_title_font=dict(size=18),
 				  yaxis_title=None, 
 				  yaxis_autorange='reversed',
 				  font=dict(size=10),
