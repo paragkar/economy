@@ -111,6 +111,8 @@ selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanI
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
 
+st.write(dfindex.shift(12,axis=1))
+
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
@@ -127,8 +129,6 @@ dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfindex = dfindex.drop("General")
-
-st.write(dfindex.shift(12,axis=1))
 
 years = sorted(set([x.year for x in list(dfindex.columns)]))
 
