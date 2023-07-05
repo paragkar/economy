@@ -128,7 +128,10 @@ years = sorted(set([x.year for x in list(dfindex.columns)]))
 x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Index Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Index Trend<b>"}
 
-if int(no_of_days) <= 30:
+
+st.write(no_of_days)
+
+if no_of_days <= 30:
 	texttemplate ="%{z}"
 else:
 	texttemplate =""
