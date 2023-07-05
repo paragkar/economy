@@ -108,7 +108,7 @@ data = [go.Heatmap(
 		colorscale="Picnic",
 			# texttemplate="%{text}",
 			textfont={"size":10},
-			reversescale=True,
+			# reversescale=True,
 			),
 		]
 			
@@ -133,7 +133,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  side = 'top',
 				  tickmode = 'linear',
 				  # tickangle=xdtickangle,
-				  # dtick = xdtickval), 
+				  dtick = 1), 
 				))
 
 st.plotly_chart(fig, use_container_width=True) # for heatmaps
