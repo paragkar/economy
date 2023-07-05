@@ -109,7 +109,7 @@ data = [go.Heatmap(
 		text = dfrural.values,
 		colorscale="Picnic",
 			texttemplate="%{text}",
-			textfont={"size":10},
+			textfont={"size":8},
 			# reversescale=True,
 			),
 		]
