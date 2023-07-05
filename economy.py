@@ -93,7 +93,7 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 
 dfcpi = dfcpi.replace(cpi_main_dict)
 
-st.write(dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="RuralIndex"))
+st.write(dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="RuralIndex").dropna(axis=0))
 
 
 
