@@ -156,7 +156,7 @@ fig = go.Figure(data=data)
 
 fig.update_layout(uniformtext_minsize=14, 
 				  uniformtext_mode='hide', 
-				  xaxis_title= "<span style='text-decoration: underline; color: red;'>x_axis_title_dict[selected_feature]</span",
+				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict[selected_feature]+"</span",
 				  xaxis_title_font=dict(size=18),
 				  yaxis_title=None, 
 				  yaxis_autorange='reversed',
