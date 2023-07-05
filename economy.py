@@ -97,8 +97,6 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
-st.write(dfrural)
-
 data = [go.Heatmap(
 		z=dfrural.values,
         x=dfrural.columns,
@@ -108,7 +106,7 @@ data = [go.Heatmap(
 		hoverinfo ='text',
 		text = dfrural.values,
 		colorscale="Picnic",
-			texttemplate="%{text}",
+			# texttemplate="%{text}",
 			textfont={"size":10},
 			reversescale=True,
 			),
