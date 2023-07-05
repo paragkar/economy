@@ -75,6 +75,17 @@ def loadecofile():
 
 	return df
 
+#function to extract a list of dates from the list using start and end date from the slider
+def get_selected_date_list(listofallcolumns, start_date, end_date):
+	    # Find the index of the first selected date
+	    index1 = listofallcolumns.index(start_date)
+
+	    # Find the index of the second selected date
+	    index2 = listofallcolumns.index(end_date)
+
+	    # Return a new list containing the dates from index1 to index2 (inclusive)
+	    return listofallcolumns[index1:index2+1]
+
 df = loadecofile()
 
 dfcpi = df["CPI"]
@@ -93,9 +104,18 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 
 dfcpi = dfcpi.replace(cpi_main_dict)
 
+
 selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+
+start_date, end_date = st.select_slider("Select a Range of Dates", 
+					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
+
+date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
+
+
+dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
