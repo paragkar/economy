@@ -90,6 +90,8 @@ df = loadecofile()
 
 dfcpi = df["CPI"]
 
+dfcpi =dfcpi.replace("-", np.nan)
+
 st.write(dfcpi.shift(-12))
 
 dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
