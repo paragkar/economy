@@ -97,7 +97,9 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
-years = set([x.year for x in list(dfrural.columns)])
+years = sorted(set([x.year for x in list(dfrural.columns)]))
+
+years = [str(x) for x in years]
 
 
 data = [go.Heatmap(
@@ -134,7 +136,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  tickvals = sorted(list(years)),
+				  tickvals = years,
 				  tickangle=-45,
 				  dtick = 1), 
 				)
