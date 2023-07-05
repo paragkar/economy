@@ -114,7 +114,7 @@ selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
 
-dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)
+dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
 
 st.write(dfweights)
 
