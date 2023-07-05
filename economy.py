@@ -130,7 +130,7 @@ x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIn
 
 
 if no_of_days <= 30:
-	texttemplate ="%{z}"
+	texttemplate ="%{text}"
 else:
 	texttemplate =""
 
