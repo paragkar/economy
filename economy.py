@@ -147,7 +147,7 @@ dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)
+dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
 
 # dfindex = dfindex.drop("General")
 
