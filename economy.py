@@ -91,7 +91,7 @@ cpi_main_dict = df["CPI_Main_Map"].set_index("MainCat").to_dict()["MainCatCode"]
 
 dfcpi = dfcpi.replace(cpi_sub_dict)
 
-dfcpi = dfcpi.rplace(cpi_main_dict)
+dfcpi = dfcpi.replace(cpi_main_dict)
 
 st.write(dfcpi)
 
