@@ -164,9 +164,9 @@ data1 = [go.Heatmap(
 		]
 
 data2 = [go.Heatmap(
-		z=dfindex.values,
-        x=dfindex.columns,
-        y=dfindex.index,
+		z=dfinflation.values,
+        x=dfinflation.columns,
+        y=dfinflation.index,
 		xgap = 1,
 		ygap = 1,
 		hoverinfo ='text',
