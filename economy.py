@@ -133,7 +133,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'linear',
-				  tickvals = list(dfrural.columns.year),
+				  tickvals = list(dfrural.columns),
 				  tickangle=0,
 				  dtick = 1), 
 				)
