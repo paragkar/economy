@@ -107,8 +107,6 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 dfcpi = dfcpi.replace(cpi_main_dict)
 
 
-tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
-
 
 selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
@@ -119,6 +117,8 @@ dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*1
 
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
+
+tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
 
 delta = relativedelta(end_date, start_date)
 
