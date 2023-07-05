@@ -111,9 +111,8 @@ selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanI
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
 
-dfinflation = ((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100
+dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
-st.write(dfinflation.round(1))
 
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
@@ -130,19 +129,41 @@ dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
+dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
+
 dfindex = dfindex.drop("General")
+
+dfinflation = dfinflation.drop("General")
 
 years = sorted(set([x.year for x in list(dfindex.columns)]))
 
-x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Index Trend<b>", "CombIndex":
-					"<b>Indian CPI Combined Index Trend<b>"}
+x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
+					"<b>Indian CPI Combined Trend<b>"}
+
+x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Inflation Trend<b>", "CombIndex":
+					"<b>Indian CPI Combined Inflation Trend<b>"}
 
 if no_of_months <= 36:
 	texttemplate ="%{z}"
 else:
 	texttemplate =""
 
-data = [go.Heatmap(
+data1 = [go.Heatmap(
+		z=dfindex.values,
+        x=dfindex.columns,
+        y=dfindex.index,
+		xgap = 1,
+		ygap = 1,
+		hoverinfo ='text',
+		# text = dfindex.values,
+		colorscale="Hot",
+			texttemplate=texttemplate,
+			textfont={"size":8},
+			reversescale=True,
+			),
+		]
+
+data2 = [go.Heatmap(
 		z=dfindex.values,
         x=dfindex.columns,
         y=dfindex.index,
@@ -158,11 +179,38 @@ data = [go.Heatmap(
 		]
 			
 
-fig = go.Figure(data=data)
+fig1 = go.Figure(data=data1)
 
-fig.update_layout(uniformtext_minsize=14, 
+fig2 = go.Figure(data=data2)
+
+fig1.update_layout(uniformtext_minsize=14, 
 				  uniformtext_mode='hide', 
-				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict[selected_feature],
+				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict1[selected_feature],
+				  xaxis_title_font=dict(size=18),
+				  yaxis_title=None, 
+				  yaxis_autorange='reversed',
+				  font=dict(size=10),
+				  template='simple_white',
+				  paper_bgcolor=None,
+				  height=650, 
+				  width=1200,
+				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+				  yaxis=dict(
+		        	  tickmode='array',
+		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
+				  	  tickfont=dict(size=12)),
+				  xaxis = dict(
+				  side = 'top',
+				  tickmode = 'array',
+				  tickvals = years,
+				  tickformat='<b>%Y<b>',
+				  tickangle=0,
+				  dtick = 1), 
+				)
+
+fig2.update_layout(uniformtext_minsize=14, 
+				  uniformtext_mode='hide', 
+				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict2[selected_feature],
 				  xaxis_title_font=dict(size=18),
 				  yaxis_title=None, 
 				  yaxis_autorange='reversed',
@@ -188,10 +236,18 @@ fig.update_layout(uniformtext_minsize=14,
 
 
 #Drawning a black border around the heatmap chart 
-fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
-fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+fig1.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+fig1.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-st.plotly_chart(fig, use_container_width=True) # for heatmaps
+
+fig2.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+fig2.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+
+
+tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
+
+tab1.plotly_chart(fig1, use_container_width=True)
+tab2.plotly_chart(fig2, use_container_width=True)
 
 
 
