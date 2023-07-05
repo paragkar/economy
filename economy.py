@@ -130,7 +130,7 @@ x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIn
 
 
 if no_of_days <= 30:
-	texttemplate ="%{text}"
+	texttemplate ="%{z}"
 else:
 	texttemplate =""
 
@@ -141,7 +141,7 @@ data = [go.Heatmap(
 		xgap = 1,
 		ygap = 1,
 		hoverinfo ='text',
-		text = dfindex.values,
+		# text = dfindex.values,
 		colorscale="Hot",
 			texttemplate=texttemplate,
 			textfont={"size":8},
