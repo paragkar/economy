@@ -92,8 +92,6 @@ dfcpi = df["CPI"]
 
 dfcpi =dfcpi.replace("-", np.nan)
 
-st.write(dfcpi.shift(-12))
-
 dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
 
 dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
