@@ -163,7 +163,7 @@ fig.update_layout(uniformtext_minsize=14,
 				  font=dict(size=10),
 				  template='simple_white',
 				  paper_bgcolor=None,
-				  height=600, 
+				  height=650, 
 				  width=1200,
 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
 				  yaxis=dict(
