@@ -133,7 +133,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  # tickangle=xdtickangle,
+				  tickangle=-90,
 				  dtick = 1), 
 				)
 
