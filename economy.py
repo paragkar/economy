@@ -132,9 +132,10 @@ fig.update_layout(uniformtext_minsize=12,
 		        	  tickmode='array'),
 				  xaxis = dict(
 				  side = 'top',
-				  tickmode = 'array',
+				  tickmode = 'linear',
+				  tickvals = list(dfrural.columns.year),
 				  tickangle=0,
-				  dtick = 100), 
+				  dtick = 1), 
 				)
 
 #Drawning a black border around the heatmap chart 
