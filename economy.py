@@ -129,7 +129,7 @@ x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIn
 					"<b>Indian CPI Combined Index Trend<b>"}
 
 
-st.write(no_of_days)
+st.write(no_of_days.days)
 
 if no_of_days <= 30:
 	texttemplate ="%{z}"
