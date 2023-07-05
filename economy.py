@@ -93,7 +93,7 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 
 dfcpi = dfcpi.replace(cpi_main_dict)
 
-selected_feature = st.sidebar.selectbox("Select a Index", ["RuralIndex","UrbanIndex", "CombIndex"])
+selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
 
