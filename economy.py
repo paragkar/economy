@@ -97,7 +97,9 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
-# dfrural.columns = [str(x) for x in list(dfrural.columns)]
+years = [x.year() for x in list(dfrural.columns)]
+
+st.write(years)
 
 data = [go.Heatmap(
 		z=dfrural.values,
@@ -115,35 +117,34 @@ data = [go.Heatmap(
 		]
 			
 
-fig = go.Figure(data=data)
+# fig = go.Figure(data=data)
 
-fig.update_layout(uniformtext_minsize=12, 
-				  uniformtext_mode='hide', 
-				  xaxis_title=None, 
-				  yaxis_title=None, 
-				  yaxis_autorange='reversed',
-				  font=dict(size=12),
-				  template='simple_white',
-				  paper_bgcolor=None,
-				  height=600, 
-				  width=1200,
-				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
-				  yaxis=dict(
-		        	  tickmode='array'),
-				  xaxis = dict(
-				  size =8,
-				  side = 'top',
-				  tickmode = 'array',
-				  tickvals = list(dfrural.columns),
-				  tickangle=-45,
-				  dtick = 100), 
-				)
+# fig.update_layout(uniformtext_minsize=12, 
+# 				  uniformtext_mode='hide', 
+# 				  xaxis_title=None, 
+# 				  yaxis_title=None, 
+# 				  yaxis_autorange='reversed',
+# 				  font=dict(size=12),
+# 				  template='simple_white',
+# 				  paper_bgcolor=None,
+# 				  height=600, 
+# 				  width=1200,
+# 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+# 				  yaxis=dict(
+# 		        	  tickmode='array'),
+# 				  xaxis = dict(
+# 				  side = 'top',
+# 				  tickmode = 'array',
+# 				  tickvals = list(dfrural.columns),
+# 				  tickangle=-45,
+# 				  dtick = 100), 
+# 				)
 
-#Drawning a black border around the heatmap chart 
-fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
-fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+# #Drawning a black border around the heatmap chart 
+# fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+# fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-st.plotly_chart(fig, use_container_width=True) # for heatmaps
+# st.plotly_chart(fig, use_container_width=True) # for heatmaps
 
 
 
