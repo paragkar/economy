@@ -161,7 +161,7 @@ data1 = [go.Heatmap(
 		colorscale="Rainbow",
 			texttemplate=texttemplate,
 			textfont={"size":8},
-			reversescale=True,
+			# reversescale=True,
 			),
 		]
 
@@ -176,7 +176,7 @@ data2 = [go.Heatmap(
 		colorscale="Rainbow",
 			texttemplate=texttemplate,
 			textfont={"size":8},
-			reversescale=True,
+			# reversescale=True,
 			),
 		]
 			
