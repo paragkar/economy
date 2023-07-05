@@ -110,7 +110,13 @@ dfcpi = dfcpi.replace(cpi_main_dict)
 
 selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
+selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights", "CombIndex":"CombWeights"}
+
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+
+dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)
+
+st.write(dfweights)
 
 dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
@@ -137,7 +143,7 @@ dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-# dfindex = dfindex.drop("General")
+dfindex = dfindex.drop("General")
 
 # dfinflation = dfinflation.drop("General")
 
