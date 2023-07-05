@@ -97,7 +97,7 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
-st.write(dfrural.columns)
+dfrural.columns = [str(x) for x in list(dfrural.columns)]
 
 data = [go.Heatmap(
 		z=dfrural.values,
