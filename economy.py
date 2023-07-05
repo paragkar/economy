@@ -116,7 +116,6 @@ dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =sel
 
 dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
 
-st.write(dfweights)
 
 dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
@@ -139,11 +138,17 @@ dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 
 dfinflation = dfinflation[date_range_list] #filter the dataframe with the selected dates
 
+dfweights = dfweights[date_range_list]
+
+dfinfweighted = dfinflation*dfweights
+
+st.write(dfinfweighted)
+
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-dfindex = dfindex.drop("General")
+# dfindex = dfindex.drop("General")
 
 # dfinflation = dfinflation.drop("General")
 
