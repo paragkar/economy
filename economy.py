@@ -131,6 +131,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  yaxis=dict(
 		        	  tickmode='array'),
 				  xaxis = dict(
+				  font = dict(size=8),
 				  side = 'top',
 				  tickmode = 'array',
 				  tickvals = list(dfrural.columns),
