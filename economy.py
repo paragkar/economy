@@ -112,7 +112,7 @@ dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =sel
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
-no_of_days = end_date - start_date
+no_of_days = (end_date - start_date).days
 
 date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
 
@@ -128,8 +128,6 @@ years = sorted(set([x.year for x in list(dfindex.columns)]))
 x_axis_title_dict = {"RuralIndex":"<b>Indian CPI Rural Index Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Index Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Index Trend<b>"}
 
-
-st.write(no_of_days.days)
 
 if no_of_days <= 30:
 	texttemplate ="%{z}"
