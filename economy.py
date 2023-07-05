@@ -128,7 +128,7 @@ dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfindex = dfindex.drop("General")
 
-st.write(dfindex.shift(1,axis=1))
+st.write(dfindex.shift(12,axis=1))
 
 years = sorted(set([x.year for x in list(dfindex.columns)]))
 
