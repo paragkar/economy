@@ -93,23 +93,22 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 
 dfcpi = dfcpi.replace(cpi_main_dict)
 
-dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="RuralIndex").dropna(axis=0)
+selected_feature = st.sidebar.selectbox("Select a Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
-dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
+dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
 
-years = sorted(set([x.year for x in list(dfrural.columns)]))
+dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
-years = [str(x) for x in years]
-
+years = sorted(set([x.year for x in list(dfindex.columns)]))
 
 data = [go.Heatmap(
-		z=dfrural.values,
-        x=dfrural.columns,
-        y=dfrural.index,
+		z=dfindex.values,
+        x=dfindex.columns,
+        y=dfindex.index,
 		xgap = 1,
 		ygap = 1,
 		hoverinfo ='text',
-		text = dfrural.values,
+		text = dfindex.values,
 		colorscale="Hot",
 			# texttemplate="%{text}",
 			textfont={"size":8},
