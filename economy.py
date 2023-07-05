@@ -99,6 +99,30 @@ dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
 st.write(dfrural)
 
+data = [go.Heatmap(
+		z=dfrural.values,
+        x=dfrural.columns,
+        y=dfrural.index,
+		xgap = 1,
+		ygap = 1,
+		hoverinfo ='text',
+		text = dfrural.values,
+		colorscale="Picnic",
+			texttemplate="%{text}",
+			textfont={"size":10},
+			reversescale=True,
+			),
+		]
+			
+#Ploting the heatmap for all the above three options
+
+fig = go.Figure(data=data)
+
+st.plotly_chart(fig, use_container_width=True) # for heatmaps
+
+
+
+
 
 
 
