@@ -153,6 +153,9 @@ dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False
 
 # dfinflation = dfinflation.drop("General")
 
+
+dfinfweighted = dfinfweighted.drop("General")
+
 dates = dfindex.columns
 
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
