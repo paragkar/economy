@@ -87,7 +87,7 @@ dfcpi = dfcpi.set_index("Date")
 
 cpi_sub_dict = df["CPI_Sub_Map"].set_index("SubCat").to_dict()
 
-st.write(cpi_sub_dict)
+st.write(cpi_sub_dict["SubCatCode"])
 
 
 
