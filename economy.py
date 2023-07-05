@@ -141,7 +141,7 @@ dfindex = dfindex.drop("General")
 
 dfinflation = dfinflation.drop("General")
 
-years = sorted(set([x.year for x in list(dfindex.columns)]))
+dates = dfindex.columns
 
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
@@ -208,7 +208,7 @@ fig1.update_layout(uniformtext_minsize=14,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  # tickvals = years,
+				  tickvals = dates,
 				  tickformat='<b>%Y-%m<b>',
 				  tickangle=0,
 				  dtick = 0), 
@@ -233,7 +233,7 @@ fig2.update_layout(uniformtext_minsize=14,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  # tickvals = years,
+				  tickvals = dates,
 				  tickformat='<b>%Y-%m<b>',
 				  tickangle=0,
 				  dtick = 0), 
