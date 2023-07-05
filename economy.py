@@ -114,7 +114,6 @@ data = [go.Heatmap(
 			),
 		]
 			
-Ploting the heatmap for all the above three options
 
 fig = go.Figure(data=data)
 
