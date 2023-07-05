@@ -133,7 +133,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  side = 'top',
 				  tickmode = 'linear',
 				  # tickangle=xdtickangle,
-				  dtick = 1), 
+				  dtick = 10), 
 				)
 
 st.plotly_chart(fig, use_container_width=True) # for heatmaps
