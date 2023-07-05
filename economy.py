@@ -110,7 +110,7 @@ data = [go.Heatmap(
 		colorscale="Hot",
 			# texttemplate="%{text}",
 			textfont={"size":8},
-			# reversescale=True,
+			reversescale=True,
 			),
 		]
 			
