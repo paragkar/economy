@@ -133,6 +133,7 @@ if no_of_days <= 30:
 	st.write(True)
 	texttemplate ="%{z}"
 else:
+	st.write(False)
 	texttemplate =""
 
 data = [go.Heatmap(
