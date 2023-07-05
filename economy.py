@@ -211,7 +211,7 @@ fig1.update_layout(uniformtext_minsize=14,
 				  tickvals = years,
 				  tickformat='<b>%Y<b>',
 				  tickangle=0,
-				  dtick = 1), 
+				  dtick = 0), 
 				)
 
 fig2.update_layout(uniformtext_minsize=14, 
@@ -236,7 +236,7 @@ fig2.update_layout(uniformtext_minsize=14,
 				  tickvals = years,
 				  tickformat='<b>%Y<b>',
 				  tickangle=0,
-				  dtick = 1), 
+				  dtick = 0), 
 				)
 
 
