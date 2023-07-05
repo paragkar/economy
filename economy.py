@@ -132,10 +132,14 @@ fig.update_layout(uniformtext_minsize=12,
 		        	  tickmode='array'),
 				  xaxis = dict(
 				  side = 'top',
-				  tickmode = 'linear',
+				  tickmode = 'array',
 				  # tickangle=xdtickangle,
 				  dtick = 10), 
 				)
+
+#Drawning a black border around the heatmap chart 
+fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 st.plotly_chart(fig, use_container_width=True) # for heatmaps
 
