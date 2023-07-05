@@ -99,6 +99,8 @@ dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =sel
 
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
+dfindex = dfindex.drop("General")
+
 years = sorted(set([x.year for x in list(dfindex.columns)]))
 
 data = [go.Heatmap(
