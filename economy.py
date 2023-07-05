@@ -90,6 +90,8 @@ df = loadecofile()
 
 dfcpi = df["CPI"]
 
+st.write(dfcpi)
+
 dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
 
 dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
