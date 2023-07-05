@@ -95,7 +95,7 @@ dfcpi = dfcpi.replace(cpi_main_dict)
 
 dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="RuralIndex").dropna(axis=0)
 
-dfrural = dfrural.sort_index(dfrural.columns[-1][0], axis =1)
+dfrural = dfrural.sort_values(dfrural.columns[-1][0])
 
 st.write(dfrural)
 
