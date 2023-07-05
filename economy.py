@@ -97,6 +97,8 @@ dfrural = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values ="Ru
 
 dfrural = dfrural.sort_values(dfrural.columns[-1], ascending = False)
 
+st.write(dfrural.columns)
+
 data = [go.Heatmap(
 		z=dfrural.values,
         x=dfrural.columns,
@@ -114,29 +116,29 @@ data = [go.Heatmap(
 			
 #Ploting the heatmap for all the above three options
 
-fig = go.Figure(data=data)
+# fig = go.Figure(data=data)
 
-fig.update_layout(uniformtext_minsize=12, 
-				  uniformtext_mode='hide', 
-				  xaxis_title=None, 
-				  yaxis_title=None, 
-				  yaxis_autorange='reversed',
-				  font=dict(size=12),
-				  template='simple_white',
-				  paper_bgcolor=None,
-				  height=600, 
-				  width=1200,
-				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
-				  yaxis=dict(
-		        	  tickmode='array'),
-				  xaxis = dict(
-				  side = 'top',
-				  tickmode = 'linear',
-				  # tickangle=xdtickangle,
-				  dtick = 10), 
-				)
+# fig.update_layout(uniformtext_minsize=12, 
+# 				  uniformtext_mode='hide', 
+# 				  xaxis_title=None, 
+# 				  yaxis_title=None, 
+# 				  yaxis_autorange='reversed',
+# 				  font=dict(size=12),
+# 				  template='simple_white',
+# 				  paper_bgcolor=None,
+# 				  height=600, 
+# 				  width=1200,
+# 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+# 				  yaxis=dict(
+# 		        	  tickmode='array'),
+# 				  xaxis = dict(
+# 				  side = 'top',
+# 				  tickmode = 'linear',
+# 				  # tickangle=xdtickangle,
+# 				  dtick = 10), 
+# 				)
 
-st.plotly_chart(fig, use_container_width=True) # for heatmaps
+# st.plotly_chart(fig, use_container_width=True) # for heatmaps
 
 
 
