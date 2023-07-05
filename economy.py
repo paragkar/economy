@@ -107,6 +107,9 @@ dfcpi = dfcpi.replace(cpi_sub_dict)
 dfcpi = dfcpi.replace(cpi_main_dict)
 
 
+tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
+
+
 selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
 
 dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
@@ -245,8 +248,6 @@ fig1.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black
 fig2.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 fig2.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-
-tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
 
 tab1.plotly_chart(fig1, use_container_width=True)
 tab2.plotly_chart(fig2, use_container_width=True)
