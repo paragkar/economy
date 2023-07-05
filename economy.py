@@ -89,7 +89,10 @@ cpi_sub_dict = df["CPI_Sub_Map"].set_index("SubCat").to_dict()["SubCatCode"]
 
 cpi_main_dict = df["CPI_Main_Map"].set_index("MainCat").to_dict()["MainCatCode"]
 
-st.write(cpi_main_dict)
+dfcpi = dfcpi.replace(cpi_sub_dict)
+
+st.write(dfcpi)
+
 
 
 
