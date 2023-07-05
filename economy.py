@@ -85,7 +85,7 @@ dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
 
 dfcpi = dfcpi.set_index("Date")
 
-st.write(dfcpi)
+st.write(df)
 
 
 
