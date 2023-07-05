@@ -134,8 +134,8 @@ fig.update_layout(uniformtext_minsize=12,
 				  side = 'top',
 				  tickmode = 'array',
 				  tickvals = list(dfrural.columns),
-				  tickangle=0,
-				  dtick = 12), 
+				  tickangle=-45,
+				  dtick = 100), 
 				)
 
 #Drawning a black border around the heatmap chart 
