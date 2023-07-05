@@ -124,7 +124,7 @@ start_date, end_date = st.select_slider("Select a Range of Dates",
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
 
-tab1, tab2 = st.tabs(["Price Index", "Price Inflation"])
+tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Contribution"])
 
 delta = relativedelta(end_date, start_date)
 
@@ -142,11 +142,12 @@ dfweights = dfweights[date_range_list]
 
 dfinfweighted = dfinflation*dfweights
 
-st.write(dfinfweighted)
 
 dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
+
+dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)
 
 # dfindex = dfindex.drop("General")
 
@@ -194,11 +195,28 @@ data2 = [go.Heatmap(
 			# reversescale=True,
 			),
 		]
+
+data3 = [go.Heatmap(
+		z=dfinfweighted.values,
+        x=dfinfweighted.columns,
+        y=dfinfweighted.index,
+		xgap = 1,
+		ygap = 1,
+		hoverinfo ='text',
+		# text = dfindex.values,
+		colorscale="Rainbow",
+			texttemplate=texttemplate,
+			textfont={"size":8},
+			# reversescale=True,
+			),
+		]
 			
 
 fig1 = go.Figure(data=data1)
 
 fig2 = go.Figure(data=data2)
+
+fig3 = go.Figure(data=data3)
 
 fig1.update_layout(uniformtext_minsize=14, 
 				  uniformtext_mode='hide', 
@@ -250,15 +268,43 @@ fig2.update_layout(uniformtext_minsize=14,
 				  dtick = 0), 
 				)
 
+fig3.update_layout(uniformtext_minsize=14, 
+				  uniformtext_mode='hide', 
+				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict2[selected_feature],
+				  xaxis_title_font=dict(size=18),
+				  yaxis_title=None, 
+				  yaxis_autorange='reversed',
+				  font=dict(size=10),
+				  template='simple_white',
+				  paper_bgcolor=None,
+				  height=650, 
+				  width=1200,
+				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+				  yaxis=dict(
+		        	  tickmode='array',
+		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
+				  	  tickfont=dict(size=12)),
+				  xaxis = dict(
+				  side = 'top',
+				  tickmode = 'array',
+				  tickvals = dates,
+				  tickformat='%b-%y',
+				  tickangle=-45,
+				  dtick = 0), 
+				)
+
 
 
 #Drawning a black border around the heatmap chart 
 fig1.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 fig1.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-
 fig2.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 fig2.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+
+fig3.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+fig3.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+
 
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
@@ -266,6 +312,7 @@ with st.container():
 	#plotting the main chart
 	tab1.plotly_chart(fig1, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
+	tab3.plotly_chart(fig3, use_container_width=True)
 
 
 
