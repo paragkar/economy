@@ -134,7 +134,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  xaxis = dict(
 				  side = 'top',
 				  tickmode = 'array',
-				  tickvals = years,
+				  tickvals = sorted(list(years)),
 				  tickangle=-45,
 				  dtick = 1), 
 				)
