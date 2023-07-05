@@ -123,7 +123,7 @@ fig = go.Figure(data=data)
 
 fig.update_layout(uniformtext_minsize=12, 
 				  uniformtext_mode='hide', 
-				  xaxis_title=None, 
+				  xaxis_title=selected_feature, 
 				  yaxis_title=None, 
 				  yaxis_autorange='reversed',
 				  font=dict(size=12),
