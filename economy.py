@@ -112,7 +112,7 @@ dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =sel
 start_date, end_date = st.select_slider("Select a Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
-delta = relativedelta(date2, date1)
+delta = relativedelta(end_date, start_date)
 
 no_of_months = delta.years * 12 + delta.months
 
