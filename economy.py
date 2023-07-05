@@ -139,6 +139,7 @@ fig.update_layout(uniformtext_minsize=12,
 				  tickmode = 'array',
 				  tickvals = years,
 				  tickformat='%Y',
+				  tickfont=dict(weight='bold'),
 				  tickangle=-45,
 				  dtick = 1), 
 				)
