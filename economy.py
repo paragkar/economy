@@ -86,7 +86,7 @@ def get_selected_date_list(listofallcolumns, start_date, end_date):
 	    # Return a new list containing the dates from index1 to index2 (inclusive)
 	    return listofallcolumns[index1:index2+1]
 
-def data(df,colorscale,texttemplate):
+def data(df,colorscale,texttemplate, hovertext):
 	data = [go.Heatmap(
 		z=df.values,
         x=df.columns,
@@ -94,6 +94,7 @@ def data(df,colorscale,texttemplate):
 		xgap = 1,
 		ygap = 1,
 		hoverinfo ='text',
+		text = hovertext,
 		# text = dfindex.values,
 		colorscale=colorscale,
 		showscale=False,
@@ -166,42 +167,22 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 
 
 @st.cache_resource
-def htext_cpi_subcat(sf):
+def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
 	hovertext = []
-	for yi, yy in enumerate(sf.index):
+	for yi, yy in enumerate(dfindex.index):
 		hovertext.append([])
-		for xi, xx in enumerate(sf.columns):
-			if exptab_dict[Band]==1: #1 means that the expiry table in the excel sheet has been set and working 
-				expiry = round(ef.values[yi][xi],2)
-			else:
-				expiry = "NA"
-			try:
-			    auction_year = round(ayear.loc[yy,round(xx-xaxisadj_dict[Band],3)])
-			except:
-			    auction_year ="NA"
-			operatornew = sff.values[yi][xi]
-			operatorold = of.values[yi][xi]
-			bandwidthexpiring = bandexpf.values[yi][xi]
-			bandwidth = bandf.values[yi][xi]
+		for xi, xx in enumerate(dfindex.columns):
+			
+			price_index = dfindex.values[yi][xi]
 			hovertext[-1].append(
-					    'StartFreq: {} MHz\
-					     <br>Channel Size : {} MHz\
-					     <br>Circle : {}\
-				             <br>Operator: {}\
-					     <br>Expiring BW: {} of {} MHz\
-					     <br>Expiring In: {} Years\
-					     <br>Acquired In: {} by {}'
+					    'Date: {}\
+					     <br>Sub Catagory : {}\
+					     <br>price_index: {}'
 
 				     .format(
-					    round(xx-xaxisadj_dict[Band],2),
-					    channelsize_dict[Band],
-					    state_dict.get(yy),
-					    operatornew,
-					    bandwidthexpiring,
-					    bandwidth,
-					    expiry,
-					    auction_year,
-					    operatorold,
+					    xx,
+					    cpi_sub_dict.get(yy),
+					    price_index,
 					    )
 					    )
 	return hovertext
@@ -329,9 +310,12 @@ if selected_metric == "CPI":
 	figgen3 = go.Figure(data=datagen3)
 
 
-	data1 = data(dfindex,"Rainbow",texttemplate)
-	data2 = data(dfinflation,"Rainbow",texttemplate)
-	data3 = data(dfinfweighted,"Rainbow",texttemplate)
+	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
+
+
+	data1 = data(dfindex,"Rainbow",texttemplate, hovertext)
+	data2 = data(dfinflation,"Rainbow",texttemplate, hovertext)
+	data3 = data(dfinfweighted,"Rainbow",texttemplate, hovertext)
 
 
 	fig1 = go.Figure(data=data1)
