@@ -86,6 +86,23 @@ def get_selected_date_list(listofallcolumns, start_date, end_date):
 	    # Return a new list containing the dates from index1 to index2 (inclusive)
 	    return listofallcolumns[index1:index2+1]
 
+def data(df,colorscale,texttemplate):
+	data = [go.Heatmap(
+		z=df.values,
+        x=df.columns,
+        y=df.index,
+		xgap = 1,
+		ygap = 1,
+		hoverinfo ='text',
+		# text = dfindex.values,
+		colorscale=colorscale,
+			texttemplate=texttemplate,
+			textfont={"size":8},
+			# reversescale=True,
+			),
+		]
+	return data
+
 df = loadecofile()
 
 dfcpi = df["CPI"]
@@ -173,20 +190,23 @@ if no_of_months <= 36:
 else:
 	texttemplate =""
 
-data1 = [go.Heatmap(
-		z=dfindex.values,
-        x=dfindex.columns,
-        y=dfindex.index,
-		xgap = 1,
-		ygap = 1,
-		hoverinfo ='text',
-		# text = dfindex.values,
-		colorscale="Rainbow",
-			texttemplate=texttemplate,
-			textfont={"size":8},
-			# reversescale=True,
-			),
-		]
+
+data1 = data(dfindex,Rainbow,texttemplate)
+
+# data1 = [go.Heatmap(
+# 		z=dfindex.values,
+#         x=dfindex.columns,
+#         y=dfindex.index,
+# 		xgap = 1,
+# 		ygap = 1,
+# 		hoverinfo ='text',
+# 		# text = dfindex.values,
+# 		colorscale="Rainbow",
+# 			texttemplate=texttemplate,
+# 			textfont={"size":8},
+# 			# reversescale=True,
+# 			),
+# 		]
 
 data2 = [go.Heatmap(
 		z=dfinflation.values,
