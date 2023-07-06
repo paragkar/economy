@@ -196,7 +196,7 @@ dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False
 
 # dfindex = dfindex.drop("General")
 
-genindex = dfindex.loc["General",:]
+genindex = dfindex.loc["General",:].reset_index()
 
 st.write(genindex)
 
