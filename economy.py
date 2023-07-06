@@ -193,51 +193,10 @@ else:
 
 data1 = data(dfindex,"Rainbow",texttemplate)
 
-# data1 = [go.Heatmap(
-# 		z=dfindex.values,
-#         x=dfindex.columns,
-#         y=dfindex.index,
-# 		xgap = 1,
-# 		ygap = 1,
-# 		hoverinfo ='text',
-# 		# text = dfindex.values,
-# 		colorscale="Rainbow",
-# 			texttemplate=texttemplate,
-# 			textfont={"size":8},
-# 			# reversescale=True,
-# 			),
-# 		]
+data2 = data(dfinflation,"Rainbow",texttemplate)
 
-data2 = [go.Heatmap(
-		z=dfinflation.values,
-        x=dfinflation.columns,
-        y=dfinflation.index,
-		xgap = 1,
-		ygap = 1,
-		hoverinfo ='text',
-		# text = dfindex.values,
-		colorscale="Rainbow",
-			texttemplate=texttemplate,
-			textfont={"size":8},
-			# reversescale=True,
-			),
-		]
+data2 = data(dfinfweighted,"Rainbow",texttemplate)
 
-data3 = [go.Heatmap(
-		z=dfinfweighted.values,
-        x=dfinfweighted.columns,
-        y=dfinfweighted.index,
-		xgap = 1,
-		ygap = 1,
-		hoverinfo ='text',
-		# text = dfindex.values,
-		colorscale="Rainbow",
-			texttemplate=texttemplate,
-			textfont={"size":8},
-			# reversescale=True,
-			),
-		]
-			
 
 fig1 = go.Figure(data=data1)
 
