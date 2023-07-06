@@ -248,21 +248,22 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:].reset_index()
 
-st.write(genindex)
+bar_trace = go.Bar(
+	x=genindex["Date"],
+	y=genindex["General"]
+	)
 
-genindexchart = summarychart(genindex, "Date", "General")
-
-st.altair_chart(genindexchart, use_container_width=True)
-
+figbargenindex = go.Figure(data=[bar_trace])
 
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
 with st.container():
 	#plotting the main chart
 	tab1.plotly_chart(fig1, use_container_width=True)
+	tab1.plotly_chart(figbargenindex, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
 	tab3.plotly_chart(fig3, use_container_width=True)
-	# st.altair_chart(genindexchart, use_container_width=True)
+
 
 
 
