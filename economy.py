@@ -290,7 +290,7 @@ if selected_metric == "CPI":
 	dfindex = dfindex.drop("General")
 	genindex.columns = list(genindex.loc["Date",:])
 	genindex=genindex.drop("Date")
-	datagen1 = data(genindex,"Rainbow",texttemplate)
+	datagen1 = data(genindex,"Rainbow",texttemplate,"")
 	figgen1 = go.Figure(data=datagen1)
 
 
@@ -298,7 +298,7 @@ if selected_metric == "CPI":
 	dfinflation = dfinflation.drop("General")
 	geninflation.columns = list(geninflation.loc["Date",:])
 	geninflation=geninflation.drop("Date")
-	datagen2 = data(geninflation,"Rainbow",texttemplate)
+	datagen2 = data(geninflation,"Rainbow",texttemplate,"")
 	figgen2 = go.Figure(data=datagen2)
 
 
@@ -306,7 +306,7 @@ if selected_metric == "CPI":
 	dfinfweighted = dfinfweighted.drop("General")
 	geninfweighted.columns = list(geninfweighted.loc["Date",:])
 	geninfweighted=geninfweighted.drop("Date")
-	datagen3 = data(geninfweighted,"Rainbow",texttemplate)
+	datagen3 = data(geninfweighted,"Rainbow",texttemplate,"")
 	figgen3 = go.Figure(data=datagen3)
 
 
