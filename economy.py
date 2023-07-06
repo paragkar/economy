@@ -248,9 +248,9 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:]
 
-st.write(genindex)
+genindex = genindex.reset_index().pivot(columns ="Date", values ="General")
 
-# dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+st.write(genindex)
 
 # datagen1 = data(genindex,"Rainbow",texttemplate)
 
