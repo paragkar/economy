@@ -104,7 +104,7 @@ def data(df,colorscale,texttemplate):
 			]
 	return data
 
-def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
+def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -125,7 +125,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 					  xaxis = dict(
 					  side = 'top',
 					  tickmode = 'array',
-					  tickvals = dates,
+					  tickvals = tickvals,
 					  tickformat='%b-%y',
 					  tickangle=-45,
 					  dtick = 0), 
@@ -134,7 +134,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 
-def figupdategen(fig, df, dates, x_title_dict, selected_feature, height):
+def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -155,7 +155,7 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height):
 					  xaxis = dict(
 					  side = 'top',
 					  tickmode = 'array',
-					  tickvals = dates,
+					  tickvals = tickvals,
 					  tickformat='%b-%y',
 					  tickangle=-45,
 					  dtick = 0), 
@@ -227,6 +227,8 @@ dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False
 
 dates = dfindex.columns
 
+years = sorted(list(set([x.date for x in list(dfindex.columns)])))
+
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
 
@@ -249,8 +251,10 @@ x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Tren
 
 if no_of_months <= 36:
 	texttemplate ="%{z:.1f}"
+	tickvals = dates
 else:
 	texttemplate =""
+	tickvals = years
 
 
 genindex = dfindex.loc["General",:].reset_index().T
@@ -287,12 +291,12 @@ fig2 = go.Figure(data=data2)
 fig3 = go.Figure(data=data3)
 
 
-figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
-figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
-figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
-figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150)
-figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150)
-figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150)
+figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals)
+figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals)
+figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals)
+figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals)
+figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals)
+figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals)
 
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
