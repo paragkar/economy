@@ -282,7 +282,8 @@ style = "<style>h3 {text-align: left;}</style>"
 with st.container():
 	#plotting the main chart
 	tab1.plotly_chart(fig1, use_container_width=True)
-	tab1.col2.plotly_chart(figgen1, use_container_width=True)
+	with tab1:
+		col2.plotly_chart(figgen1, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
 	tab3.plotly_chart(fig3, use_container_width=True)
 
