@@ -152,13 +152,13 @@ def figupdategen(fig, df, dates):
 			        # 	  tickmode='array',
 			        	  # ticktext =["<b>"+x+"<b>" for x in list(df.index)],
 					  	  # tickfont=dict(size=12)),
-					  # xaxis = dict(
-					  # side = 'top',
-					  # tickmode = 'array',
-					  # # tickvals = dates,
-					  # # tickformat='%b-%y',
-					  # # tickangle=-45,
-					  # dtick = 0), 
+					  xaxis = dict(
+					  side = 'bottom',
+					  tickmode = 'array',
+					  tickvals = dates,
+					  tickformat='%b-%y',
+					  tickangle=-45,
+					  dtick = 0), 
 					)
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
