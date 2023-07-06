@@ -276,7 +276,7 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 
 figupdategen(figgen1, genindex, dates)
 
-col1,col2 = st.columns([0.42,14]) #create collumns of uneven width
+col1,col2 = st.columns([0.41,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
 with st.container():
