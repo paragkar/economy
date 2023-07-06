@@ -224,16 +224,11 @@ if selected_metric == "CPI India":
 if selected_metric == "CPI States":
 
 	dfcpi = df["CPI_States"]
-	dfcpi =dfcpi.replace("-", np.nan)
-	dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
-	dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
-	dfcpi = dfcpi.set_index("Date")
 
 	cpi_states_dict = df["States_Code_Map"].set_index("State").to_dict()["Code"]
 
 	dfcpi = dfcpi.replace(cpi_states_dict)
 
-	st.write(dfcpi)
 
 
 dfcpi =dfcpi.replace("-", np.nan)
