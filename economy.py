@@ -191,7 +191,7 @@ else:
 	texttemplate =""
 
 
-data1 = data(dfindex,Rainbow,texttemplate)
+data1 = data(dfindex,"Rainbow",texttemplate)
 
 # data1 = [go.Heatmap(
 # 		z=dfindex.values,
