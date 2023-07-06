@@ -105,7 +105,7 @@ def data(df,colorscale,texttemplate, hovertext):
 			]
 	return data
 
-def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals):
+def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -133,6 +133,8 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals):
 					)
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
+
 
 
 def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals):
@@ -312,6 +314,8 @@ if selected_metric == "CPI":
 
 	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
 
+	hoverlabel_bgcolor = "#000000" #subdued black
+
 
 	data1 = data(dfindex,"Rainbow",texttemplate, hovertext)
 	data2 = data(dfinflation,"Rainbow",texttemplate, hovertext)
@@ -323,9 +327,9 @@ if selected_metric == "CPI":
 	fig3 = go.Figure(data=data3)
 
 
-	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals)
-	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals)
-	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals)
+	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor)
+	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor)
+	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor)
 	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals)
 	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals)
 	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals)
