@@ -248,7 +248,6 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:]
 
-genindex = genindex.reset_index().pivot(index = 0, columns ="Date", values ="General")
 
 st.write(genindex)
 
