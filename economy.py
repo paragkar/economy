@@ -221,6 +221,8 @@ if selected_metric == "CPI India":
 
 	dfcpi = dfcpi.replace(cpi_main_dict)
 
+	index = "SubCat"
+
 if selected_metric == "CPI States":
 
 	dfcpi = df["CPI_States"]
@@ -228,6 +230,8 @@ if selected_metric == "CPI States":
 	cpi_states_dict = df["States_Code_Map"].set_index("State").to_dict()["Code"]
 
 	dfcpi = dfcpi.replace(cpi_states_dict)
+
+	index = "State"
 
 
 
@@ -243,9 +247,9 @@ selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanI
 
 selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights", "CombIndex":"CombWeights"}
 
-dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+dfindex = dfcpi.reset_index().pivot(index=index, columns ="Date", values =selected_feature).dropna(axis=0)
 
-dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
+dfweights = dfcpi.reset_index().pivot(index=index, columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
 
 dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
