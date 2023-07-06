@@ -183,7 +183,7 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
 
 				     .format(
 					    xx,
-					    cpi_sub_dict.get(yy),
+					    yy,
 					    price_index,
 					    )
 					    )
