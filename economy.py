@@ -103,6 +103,33 @@ def data(df,colorscale,texttemplate):
 		]
 	return data
 
+def figupdate(fig, df, dates, x_title_dict, selected_feature):
+
+	fig.update_layout(uniformtext_minsize=14, 
+					  uniformtext_mode='hide', 
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title_font=dict(size=18),
+					  yaxis_title=None, 
+					  yaxis_autorange='reversed',
+					  font=dict(size=10),
+					  template='simple_white',
+					  paper_bgcolor=None,
+					  height=650, 
+					  width=1200,
+					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+					  yaxis=dict(
+			        	  tickmode='array',
+			        	  ticktext =["<b>"+x+"<b>" for x in list(df.index)],
+					  	  tickfont=dict(size=12)),
+					  xaxis = dict(
+					  side = 'top',
+					  tickmode = 'array',
+					  tickvals = dates,
+					  tickformat='%b-%y',
+					  tickangle=-45,
+					  dtick = 0), 
+					)
+
 df = loadecofile()
 
 dfcpi = df["CPI"]
@@ -204,30 +231,33 @@ fig2 = go.Figure(data=data2)
 
 fig3 = go.Figure(data=data3)
 
-fig1.update_layout(uniformtext_minsize=14, 
-				  uniformtext_mode='hide', 
-				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict1[selected_feature],
-				  xaxis_title_font=dict(size=18),
-				  yaxis_title=None, 
-				  yaxis_autorange='reversed',
-				  font=dict(size=10),
-				  template='simple_white',
-				  paper_bgcolor=None,
-				  height=650, 
-				  width=1200,
-				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
-				  yaxis=dict(
-		        	  tickmode='array',
-		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
-				  	  tickfont=dict(size=12)),
-				  xaxis = dict(
-				  side = 'top',
-				  tickmode = 'array',
-				  tickvals = dates,
-				  tickformat='%b-%y',
-				  tickangle=-45,
-				  dtick = 0), 
-				)
+
+figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
+
+# fig1.update_layout(uniformtext_minsize=14, 
+# 				  uniformtext_mode='hide', 
+# 				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict1[selected_feature],
+# 				  xaxis_title_font=dict(size=18),
+# 				  yaxis_title=None, 
+# 				  yaxis_autorange='reversed',
+# 				  font=dict(size=10),
+# 				  template='simple_white',
+# 				  paper_bgcolor=None,
+# 				  height=650, 
+# 				  width=1200,
+# 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+# 				  yaxis=dict(
+# 		        	  tickmode='array',
+# 		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
+# 				  	  tickfont=dict(size=12)),
+# 				  xaxis = dict(
+# 				  side = 'top',
+# 				  tickmode = 'array',
+# 				  tickvals = dates,
+# 				  tickformat='%b-%y',
+# 				  tickangle=-45,
+# 				  dtick = 0), 
+# 				)
 
 fig2.update_layout(uniformtext_minsize=14, 
 				  uniformtext_mode='hide', 
