@@ -164,12 +164,55 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 
+
+@st.cache_resource
+def htext_cpi_subcat(sf):
+	hovertext = []
+	for yi, yy in enumerate(sf.index):
+		hovertext.append([])
+		for xi, xx in enumerate(sf.columns):
+			if exptab_dict[Band]==1: #1 means that the expiry table in the excel sheet has been set and working 
+				expiry = round(ef.values[yi][xi],2)
+			else:
+				expiry = "NA"
+			try:
+			    auction_year = round(ayear.loc[yy,round(xx-xaxisadj_dict[Band],3)])
+			except:
+			    auction_year ="NA"
+			operatornew = sff.values[yi][xi]
+			operatorold = of.values[yi][xi]
+			bandwidthexpiring = bandexpf.values[yi][xi]
+			bandwidth = bandf.values[yi][xi]
+			hovertext[-1].append(
+					    'StartFreq: {} MHz\
+					     <br>Channel Size : {} MHz\
+					     <br>Circle : {}\
+				             <br>Operator: {}\
+					     <br>Expiring BW: {} of {} MHz\
+					     <br>Expiring In: {} Years\
+					     <br>Acquired In: {} by {}'
+
+				     .format(
+					    round(xx-xaxisadj_dict[Band],2),
+					    channelsize_dict[Band],
+					    state_dict.get(yy),
+					    operatornew,
+					    bandwidthexpiring,
+					    bandwidth,
+					    expiry,
+					    auction_year,
+					    operatorold,
+					    )
+					    )
+	return hovertext
+
+
 df = loadecofile()
 
 
-selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI SubCat"])
+selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI"])
 
-if selected_metric == "CPI SubCat":
+if selected_metric == "CPI":
 
 	dfcpi = df["CPI"]
 
@@ -318,6 +361,7 @@ if selected_metric == "CPI SubCat":
 		st.plotly_chart(fig3, use_container_width=True)
 		col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
 		col2.plotly_chart(figgen3, use_container_width=True)
+
 
 
 
