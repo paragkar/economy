@@ -133,11 +133,35 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
-def summarychart(summarydf, xcolumn, ycolumn):
-	bar = alt.Chart(summarydf).mark_bar().encode(
-	y = alt.Y(ycolumn+':Q', axis=alt.Axis(labels=False)),
-	x = alt.X(xcolumn+':O', axis=alt.Axis(labels=False)),
-	color = alt.Color(xcolumn+':N', legend=None))
+
+def figupdategen(fig, df, dates):
+
+	fig.update_layout(uniformtext_minsize=14, 
+					  uniformtext_mode='hide', 
+					  # xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title_font=dict(size=18),
+					  yaxis_title=None, 
+					  yaxis_autorange='reversed',
+					  font=dict(size=10),
+					  template='simple_white',
+					  paper_bgcolor=None,
+					  height=50, 
+					  width=1200,
+					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+					  yaxis=dict(
+			        	  tickmode='array',
+			        	  ticktext =["<b>"+x+"<b>" for x in list(df.index)],
+					  	  tickfont=dict(size=12)),
+					  xaxis = dict(
+					  side = 'top',
+					  tickmode = 'array',
+					  tickvals = dates,
+					  tickformat='%b-%y',
+					  tickangle=-45,
+					  dtick = 0), 
+					)
+	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 
 df = loadecofile()
@@ -250,7 +274,7 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 
-
+figupdategen(figgen1, genindex, dates)
 
 
 #Final plotting of various charts on the output page
