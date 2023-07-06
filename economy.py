@@ -150,14 +150,14 @@ def figupdategen(fig, df, dates):
 					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
 					  yaxis=dict(
 			        	  tickmode='array',
-			        	  ticktext =["<b>"+x+"<b>" for x in list(df.index)],
-					  	  tickfont=dict(size=12)),
+			        	  # ticktext =["<b>"+x+"<b>" for x in list(df.index)],
+					  	  # tickfont=dict(size=12)),
 					  xaxis = dict(
 					  side = 'top',
 					  tickmode = 'array',
-					  tickvals = dates,
-					  tickformat='%b-%y',
-					  tickangle=-45,
+					  # tickvals = dates,
+					  # tickformat='%b-%y',
+					  # tickangle=-45,
 					  dtick = 0), 
 					)
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
