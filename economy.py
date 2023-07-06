@@ -227,7 +227,7 @@ dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False
 
 dates = dfindex.columns
 
-years = sorted(list(set([x.date for x in list(dfindex.columns)])))
+years = sorted(list(set([x.year for x in list(dfindex.columns)])))
 
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
