@@ -256,8 +256,6 @@ if selected_metric == "CPI":
 
 	dfinfweighted = (dfinflation*dfweights)*100
 
-	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
-
 	dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 	dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
@@ -320,7 +318,7 @@ if selected_metric == "CPI":
 	datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertextgen)
 	figgen3 = go.Figure(data=datagen3)
 
-
+	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
 	hoverlabel_bgcolor = "#000000" #subdued black
 
 
