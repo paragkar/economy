@@ -233,6 +233,8 @@ fig3 = go.Figure(data=data3)
 
 
 figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
+figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature)
+figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 # fig1.update_layout(uniformtext_minsize=14, 
 # 				  uniformtext_mode='hide', 
@@ -259,55 +261,55 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
 # 				  dtick = 0), 
 # 				)
 
-fig2.update_layout(uniformtext_minsize=14, 
-				  uniformtext_mode='hide', 
-				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict2[selected_feature],
-				  xaxis_title_font=dict(size=18),
-				  yaxis_title=None, 
-				  yaxis_autorange='reversed',
-				  font=dict(size=10),
-				  template='simple_white',
-				  paper_bgcolor=None,
-				  height=650, 
-				  width=1200,
-				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
-				  yaxis=dict(
-		        	  tickmode='array',
-		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
-				  	  tickfont=dict(size=12)),
-				  xaxis = dict(
-				  side = 'top',
-				  tickmode = 'array',
-				  tickvals = dates,
-				  tickformat='%b-%y',
-				  tickangle=-45,
-				  dtick = 0), 
-				)
+# fig2.update_layout(uniformtext_minsize=14, 
+# 				  uniformtext_mode='hide', 
+# 				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict2[selected_feature],
+# 				  xaxis_title_font=dict(size=18),
+# 				  yaxis_title=None, 
+# 				  yaxis_autorange='reversed',
+# 				  font=dict(size=10),
+# 				  template='simple_white',
+# 				  paper_bgcolor=None,
+# 				  height=650, 
+# 				  width=1200,
+# 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+# 				  yaxis=dict(
+# 		        	  tickmode='array',
+# 		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
+# 				  	  tickfont=dict(size=12)),
+# 				  xaxis = dict(
+# 				  side = 'top',
+# 				  tickmode = 'array',
+# 				  tickvals = dates,
+# 				  tickformat='%b-%y',
+# 				  tickangle=-45,
+# 				  dtick = 0), 
+# 				)
 
-fig3.update_layout(uniformtext_minsize=14, 
-				  uniformtext_mode='hide', 
-				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict3[selected_feature],
-				  xaxis_title_font=dict(size=18),
-				  yaxis_title=None, 
-				  yaxis_autorange='reversed',
-				  font=dict(size=10),
-				  template='simple_white',
-				  paper_bgcolor=None,
-				  height=650, 
-				  width=1200,
-				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
-				  yaxis=dict(
-		        	  tickmode='array',
-		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
-				  	  tickfont=dict(size=12)),
-				  xaxis = dict(
-				  side = 'top',
-				  tickmode = 'array',
-				  tickvals = dates,
-				  tickformat='%b-%y',
-				  tickangle=-45,
-				  dtick = 0), 
-				)
+# fig3.update_layout(uniformtext_minsize=14, 
+# 				  uniformtext_mode='hide', 
+# 				  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_axis_title_dict3[selected_feature],
+# 				  xaxis_title_font=dict(size=18),
+# 				  yaxis_title=None, 
+# 				  yaxis_autorange='reversed',
+# 				  font=dict(size=10),
+# 				  template='simple_white',
+# 				  paper_bgcolor=None,
+# 				  height=650, 
+# 				  width=1200,
+# 				  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+# 				  yaxis=dict(
+# 		        	  tickmode='array',
+# 		        	  ticktext =["<b>"+x+"<b>" for x in list(dfindex.index)],
+# 				  	  tickfont=dict(size=12)),
+# 				  xaxis = dict(
+# 				  side = 'top',
+# 				  tickmode = 'array',
+# 				  tickvals = dates,
+# 				  tickformat='%b-%y',
+# 				  tickangle=-45,
+# 				  dtick = 0), 
+# 				)
 
 
 
