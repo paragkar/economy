@@ -286,12 +286,20 @@ datagen2 = data(geninflation,"Rainbow",texttemplate)
 figgen2 = go.Figure(data=datagen2)
 
 
+geninfweighted = dfinfweighted.loc["General",:].reset_index().T
+geninfweighted.columns = list(geninfweighted.loc["Date",:])
+geninfweighted=geninfweighted.drop("Date")
+datagen3 = data(geninfweighted,"Rainbow",texttemplate)
+figgen3 = go.Figure(data=datagen3)
+
+
 
 figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150)
 figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150)
+figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150)
 
 
 # col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
@@ -308,6 +316,8 @@ with tab2:
 	col2.plotly_chart(figgen2, use_container_width=True)
 with tab3:
 	st.plotly_chart(fig3, use_container_width=True)
+	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+	col2.plotly_chart(figgen3, use_container_width=True)
 
 
 
