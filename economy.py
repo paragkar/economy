@@ -246,7 +246,7 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
-genindex = dfindex.loc["General",:]
+genindex = dfindex.loc["General",:].reset_index()
 
 
 st.write(genindex.T)
