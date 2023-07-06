@@ -247,13 +247,15 @@ if selected_metric == "CPI":
 
 	dfweights = dfweights[date_range_list]
 
-	dfinfweighted = dfinflation*dfweights
+	dfinfweighted = (dfinflation*dfweights)*100
+
+	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
 
 	dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
 	dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-	dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
+	dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)
 
 
 	dates = dfindex.columns
@@ -311,8 +313,6 @@ if selected_metric == "CPI":
 	datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertext)
 	figgen3 = go.Figure(data=datagen3)
 
-
-	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
 
 	hoverlabel_bgcolor = "#000000" #subdued black
 
