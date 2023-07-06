@@ -254,9 +254,9 @@ x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution Trend to Ov
 					  "UrbanIndex":"<b>Indian CPI Urban Contribution Trend to Overall (Basis Points)<b>", 
 					  "CombIndex": "<b>Indian CPI Combined Contribution Trend to Overall (Basis Points)<b>"}
 
-x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend<b>", 
-					      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend<b>", 
-					      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend<b>"}
+x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
+					      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
+					      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
 if no_of_months <= 36:
 	texttemplate ="%{z:.1f}"
