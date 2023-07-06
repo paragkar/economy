@@ -145,7 +145,7 @@ def figupdategen(fig, df, dates):
 					  font=dict(size=10),
 					  template='simple_white',
 					  paper_bgcolor=None,
-					  height=50, 
+					  height=100, 
 					  width=1100,
 					  margin=dict(t=0, b=25, l=50, r=50, pad=0),
 					  # yaxis=dict(
@@ -157,7 +157,7 @@ def figupdategen(fig, df, dates):
 					  tickmode = 'array',
 					  tickvals = dates,
 					  tickformat='%b-%y',
-					  tickangle=0,
+					  tickangle=45,
 					  dtick = 0), 
 					)
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
