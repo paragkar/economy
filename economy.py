@@ -166,153 +166,158 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 
 df = loadecofile()
 
-dfcpi = df["CPI"]
 
-dfcpi =dfcpi.replace("-", np.nan)
+selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI SubCat"])
 
-dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
+if selected_metric == "CPI SubCat":
 
-dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
+	dfcpi = df["CPI"]
 
-dfcpi = dfcpi.set_index("Date")
+	dfcpi =dfcpi.replace("-", np.nan)
 
-cpi_sub_dict = df["CPI_Sub_Map"].set_index("SubCat").to_dict()["SubCatCode"]
+	dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
 
-cpi_main_dict = df["CPI_Main_Map"].set_index("MainCat").to_dict()["MainCatCode"]
+	dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
 
-dfcpi = dfcpi.replace(cpi_sub_dict)
+	dfcpi = dfcpi.set_index("Date")
 
-dfcpi = dfcpi.replace(cpi_main_dict)
+	cpi_sub_dict = df["CPI_Sub_Map"].set_index("SubCat").to_dict()["SubCatCode"]
 
+	cpi_main_dict = df["CPI_Main_Map"].set_index("MainCat").to_dict()["MainCatCode"]
 
-selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
+	dfcpi = dfcpi.replace(cpi_sub_dict)
 
-selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights", "CombIndex":"CombWeights"}
-
-dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
-
-dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
-
-dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
+	dfcpi = dfcpi.replace(cpi_main_dict)
 
 
-start_date, end_date = st.select_slider("Select Range of Dates", 
-					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
+	selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
+
+	selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights", "CombIndex":"CombWeights"}
+
+	dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+
+	dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
+
+	dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
 
-tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Inflation"])
-
-delta = relativedelta(end_date, start_date)
-
-no_of_months = delta.years * 12 + delta.months
+	start_date, end_date = st.select_slider("Select Range of Dates", 
+						options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
 
-date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
+	tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Inflation"])
+
+	delta = relativedelta(end_date, start_date)
+
+	no_of_months = delta.years * 12 + delta.months
 
 
-dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
-
-dfinflation = dfinflation[date_range_list] #filter the dataframe with the selected dates
-
-dfweights = dfweights[date_range_list]
-
-dfinfweighted = dfinflation*dfweights
-
-dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
-
-dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
-
-dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
+	date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
 
 
-dates = dfindex.columns
+	dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
 
-years = sorted(list(set([x.year for x in list(dfindex.columns)])))
+	dfinflation = dfinflation[date_range_list] #filter the dataframe with the selected dates
 
-x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
-					"<b>Indian CPI Combined Trend<b>"}
+	dfweights = dfweights[date_range_list]
 
-x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
-					"<b>Indian CPI General Combined Trend<b>"}
+	dfinfweighted = dfinflation*dfweights
 
-x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
-					"<b>Indian CPI Combined % Inflation Trend<b>"}
+	dfindex = dfindex.sort_values(dfindex.columns[-1], ascending = False)
 
-x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
-					"<b>Indian CPI Combined % General Inflation Trend<b>"}
+	dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
-x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution Trend to Overall (Basis Points)<b>", 
-					  "UrbanIndex":"<b>Indian CPI Urban Contribution Trend to Overall (Basis Points)<b>", 
-					  "CombIndex": "<b>Indian CPI Combined Contribution Trend to Overall (Basis Points)<b>"}
-
-x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
-					      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
-					      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
-
-if no_of_months <= 36:
-	texttemplate ="%{z:.1f}"
-	tickvals = dates
-else:
-	texttemplate =""
-	tickvals = years
+	dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
 
 
-genindex = dfindex.loc["General",:].reset_index().T
-dfindex = dfindex.drop("General")
-genindex.columns = list(genindex.loc["Date",:])
-genindex=genindex.drop("Date")
-datagen1 = data(genindex,"Rainbow",texttemplate)
-figgen1 = go.Figure(data=datagen1)
+	dates = dfindex.columns
+
+	years = sorted(list(set([x.year for x in list(dfindex.columns)])))
+
+	x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined Trend<b>"}
+
+	x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
+						"<b>Indian CPI General Combined Trend<b>"}
+
+	x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined % Inflation Trend<b>"}
+
+	x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined % General Inflation Trend<b>"}
+
+	x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution Trend to Overall (Basis Points)<b>", 
+						  "UrbanIndex":"<b>Indian CPI Urban Contribution Trend to Overall (Basis Points)<b>", 
+						  "CombIndex": "<b>Indian CPI Combined Contribution Trend to Overall (Basis Points)<b>"}
+
+	x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
+						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
+						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
+
+	if no_of_months <= 36:
+		texttemplate ="%{z:.1f}"
+		tickvals = dates
+	else:
+		texttemplate =""
+		tickvals = years
 
 
-geninflation = dfinflation.loc["General",:].reset_index().T
-dfinflation = dfinflation.drop("General")
-geninflation.columns = list(geninflation.loc["Date",:])
-geninflation=geninflation.drop("Date")
-datagen2 = data(geninflation,"Rainbow",texttemplate)
-figgen2 = go.Figure(data=datagen2)
+	genindex = dfindex.loc["General",:].reset_index().T
+	dfindex = dfindex.drop("General")
+	genindex.columns = list(genindex.loc["Date",:])
+	genindex=genindex.drop("Date")
+	datagen1 = data(genindex,"Rainbow",texttemplate)
+	figgen1 = go.Figure(data=datagen1)
 
 
-geninfweighted = dfinfweighted.loc["General",:].reset_index().T
-dfinfweighted = dfinfweighted.drop("General")
-geninfweighted.columns = list(geninfweighted.loc["Date",:])
-geninfweighted=geninfweighted.drop("Date")
-datagen3 = data(geninfweighted,"Rainbow",texttemplate)
-figgen3 = go.Figure(data=datagen3)
+	geninflation = dfinflation.loc["General",:].reset_index().T
+	dfinflation = dfinflation.drop("General")
+	geninflation.columns = list(geninflation.loc["Date",:])
+	geninflation=geninflation.drop("Date")
+	datagen2 = data(geninflation,"Rainbow",texttemplate)
+	figgen2 = go.Figure(data=datagen2)
 
 
-data1 = data(dfindex,"Rainbow",texttemplate)
-data2 = data(dfinflation,"Rainbow",texttemplate)
-data3 = data(dfinfweighted,"Rainbow",texttemplate)
+	geninfweighted = dfinfweighted.loc["General",:].reset_index().T
+	dfinfweighted = dfinfweighted.drop("General")
+	geninfweighted.columns = list(geninfweighted.loc["Date",:])
+	geninfweighted=geninfweighted.drop("Date")
+	datagen3 = data(geninfweighted,"Rainbow",texttemplate)
+	figgen3 = go.Figure(data=datagen3)
 
 
-fig1 = go.Figure(data=data1)
-fig2 = go.Figure(data=data2)
-fig3 = go.Figure(data=data3)
+	data1 = data(dfindex,"Rainbow",texttemplate)
+	data2 = data(dfinflation,"Rainbow",texttemplate)
+	data3 = data(dfinfweighted,"Rainbow",texttemplate)
 
 
-figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals)
-figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals)
-figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals)
-figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals)
-figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals)
-figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals)
+	fig1 = go.Figure(data=data1)
+	fig2 = go.Figure(data=data2)
+	fig3 = go.Figure(data=data3)
 
-#Final plotting of various charts on the output page
-style = "<style>h3 {text-align: left;}</style>"
 
-with tab1:
-	st.plotly_chart(fig1, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
-	col2.plotly_chart(figgen1, use_container_width=True)
-with tab2:
-	st.plotly_chart(fig2, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
-	col2.plotly_chart(figgen2, use_container_width=True)
-with tab3:
-	st.plotly_chart(fig3, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
-	col2.plotly_chart(figgen3, use_container_width=True)
+	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals)
+	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals)
+	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals)
+	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals)
+	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals)
+	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals)
+
+	#Final plotting of various charts on the output page
+	style = "<style>h3 {text-align: left;}</style>"
+
+	with tab1:
+		st.plotly_chart(fig1, use_container_width=True)
+		col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+		col2.plotly_chart(figgen1, use_container_width=True)
+	with tab2:
+		st.plotly_chart(fig2, use_container_width=True)
+		col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+		col2.plotly_chart(figgen2, use_container_width=True)
+	with tab3:
+		st.plotly_chart(fig3, use_container_width=True)
+		col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+		col2.plotly_chart(figgen3, use_container_width=True)
 
 
 
