@@ -134,18 +134,18 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
 
-def figupdategen(fig, df, dates):
+def figupdategen(fig, df, dates, x_title_dict, selected_feature, height):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  xaxis_title= None,
-					  # xaxis_title_font=dict(size=18),
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
 					  font=dict(size=10),
 					  template='simple_white',
 					  paper_bgcolor=None,
-					  height=100, 
+					  height=height, 
 					  width=1100,
 					  margin=dict(t=40, b=25, l=50, r=50, pad=0),
 					  # yaxis=dict(
@@ -239,12 +239,22 @@ dates = dfindex.columns
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
 
+x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
+					"<b>Indian CPI General Combined Trend<b>"}
+
 x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined % Inflation Trend<b>"}
+
+x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
+					"<b>Indian CPI Combined % General Inflation Trend<b>"}
 
 x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution Trend to Overall (Basis Points)<b>", 
 					  "UrbanIndex":"<b>Indian CPI Urban Contribution Trend to Overall (Basis Points)<b>", 
 					  "CombIndex": "<b>Indian CPI Combined Contribution Trend to Overall (Basis Points)<b>"}
+
+x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend<b>", 
+					      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend<b>", 
+					      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend<b>"}
 
 if no_of_months <= 36:
 	texttemplate ="%{z:.1f}"
@@ -274,7 +284,7 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 
-figupdategen(figgen1, genindex, dates)
+figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 100)
 
 # col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
