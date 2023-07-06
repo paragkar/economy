@@ -196,7 +196,7 @@ dfweights = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =s
 dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
 
-start_date, end_date = st.select_slider("Select a Range of Dates", 
+start_date, end_date = st.select_slider("Select Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
 
