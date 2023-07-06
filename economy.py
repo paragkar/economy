@@ -137,7 +137,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, h
 
 
 
-def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals):
+def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals, hoverlabel_bgcolor):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -165,6 +165,7 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 					)
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
 
 
 
@@ -347,9 +348,9 @@ if selected_metric == "CPI":
 	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor)
 	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor)
 	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor)
-	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals)
-	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals)
-	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals)
+	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals,hoverlabel_bgcolor)
+	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals, hoverlabel_bgcolor)
+	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals, hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
