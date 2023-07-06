@@ -168,7 +168,7 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 
 
 
-@st.cache_resource
+# @st.cache_resource
 def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
 	hovertext = []
 	for yi, yy in enumerate(dfindex.index):
