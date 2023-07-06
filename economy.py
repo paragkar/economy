@@ -379,7 +379,9 @@ if selected_metric == "CPI States":
 
 	cpi_states_dict = df["States_Code_Map"].set_index("State").to_dict()["Code"]
 
-	st.write(cpi_states_dict)
+	dfcpi = dfcpi.replace(cpi_states_dict)
+
+	st.write(dfcpi)
 
 
 
