@@ -233,6 +233,8 @@ if selected_metric == "CPI States":
 
 	dfcpi = dfcpi.replace(cpi_states_dict)
 
+	st.write(dfcpi)
+
 
 dfcpi =dfcpi.replace("-", np.nan)
 
