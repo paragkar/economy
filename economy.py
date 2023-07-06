@@ -279,14 +279,15 @@ figupdategen(figgen1, genindex, dates)
 # col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
-with st.container():
-	#plotting the main chart
+
+with tab1:
 	col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
-	tab1.plotly_chart(fig1, use_container_width=True)
-	with tab1:
-		col2.plotly_chart(figgen1, use_container_width=True)
-	tab2.plotly_chart(fig2, use_container_width=True)
-	tab3.plotly_chart(fig3, use_container_width=True)
+	st.plotly_chart(fig1, use_container_width=True)
+	col2.plotly_chart(figgen1, use_container_width=True)
+with tab2:
+	st.plotly_chart(fig2, use_container_width=True)
+with tab3:
+	st.plotly_chart(fig3, use_container_width=True)
 
 
 
