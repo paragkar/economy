@@ -190,8 +190,8 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
 					    xx,
 					    yy,
 					    price_index,
-					    price_inflation,
-					    weighted_inflation,
+					    round(price_inflation,1),
+					    round(weighted_inflation,0),
 					    )
 					    )
 	return hovertext
