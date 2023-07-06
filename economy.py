@@ -248,7 +248,7 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:].reset_index().T
 
-genindex.columns = list(genindex.iloc["Date",:])
+genindex.columns = list(genindex.loc["Date",:])
 
 genindex=genindex.drop("Date")
 
