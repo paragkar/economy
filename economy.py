@@ -381,7 +381,18 @@ if selected_metric == "CPI States":
 
 	dfcpi = dfcpi.replace(cpi_states_dict)
 
-	st.write(dfcpi)
+	selected_feature = st.sidebar.selectbox("Select an Index", ["RuralIndex","UrbanIndex", "CombIndex"])
+
+	selected_weights_dict = {"RuralIndex":"RuralWeights", "UrbanIndex":"UrbanWeights", "CombIndex":"CombWeights"}
+
+	dfindex = dfcpi.reset_index().pivot(index="State", columns ="Date", values =selected_feature).dropna(axis=0)
+
+	dfweights = dfcpi.reset_index().pivot(index="State", columns ="Date", values =selected_weights_dict[selected_feature]).dropna(axis=0)/100
+
+	dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
+
+	st.write(dfindex)
+
 
 
 
