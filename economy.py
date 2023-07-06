@@ -169,11 +169,17 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 
 
 # @st.cache_resource
-def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
+def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,datano):
+	if datano==1:
+		dfanchor = dfindex.copy()
+	if datano==2:
+		dfanchor = dfinflation.copy()
+	if datano==3:
+		dfanchor = dfinfweighted.copy()
 	hovertext = []
-	for yi, yy in enumerate(dfindex.index):
+	for yi, yy in enumerate(dfanchor.index):
 		hovertext.append([])
-		for xi, xx in enumerate(dfindex.columns):
+		for xi, xx in enumerate(dfanchor.columns):
 			
 			price_index = dfindex.loc[yy,xx]
 			price_inflation = dfinflation.loc[yy, xx]
@@ -318,13 +324,15 @@ if selected_metric == "CPI":
 	datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertextgen)
 	figgen3 = go.Figure(data=datagen3)
 
-	hovertext = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted)
+	hovertext1 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,1)
+	hovertext2 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,2)
+	hovertext3 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,3)
 	hoverlabel_bgcolor = "#000000" #subdued black
 
 
-	data1 = data(dfindex,"Rainbow",texttemplate, hovertext)
-	data2 = data(dfinflation,"Rainbow",texttemplate, hovertext)
-	data3 = data(dfinfweighted,"Rainbow",texttemplate, hovertext)
+	data1 = data(dfindex,"Rainbow",texttemplate, hovertext1)
+	data2 = data(dfinflation,"Rainbow",texttemplate, hovertext2)
+	data3 = data(dfinfweighted,"Rainbow",texttemplate, hovertext3)
 
 
 	fig1 = go.Figure(data=data1)
