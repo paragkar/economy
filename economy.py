@@ -377,7 +377,9 @@ if selected_metric == "CPI States":
 	dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
 	dfcpi = dfcpi.set_index("Date")
 
-	st.write(dfcpi)
+	cpi_states_dict = df["States_Code_Map"].set_index("State").to_dict()["Code"]
+
+	st.write(cpi_states_dict)
 
 
 
