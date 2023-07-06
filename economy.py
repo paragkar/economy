@@ -246,10 +246,15 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
-genindex = dfindex.loc["General",:].reset_index()
+genindex = dfindex.loc["General",:].reset_index().T
+
+genindex.columns = list(genindex.iloc["Date",:])
+
+genindex=genindex.drop("Date")
 
 
-st.write(genindex.T)
+
+st.write(genindex)
 
 # datagen1 = data(genindex,"Rainbow",texttemplate)
 
