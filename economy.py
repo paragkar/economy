@@ -105,11 +105,11 @@ def data(df,colorscale,texttemplate, hovertext):
 			]
 	return data
 
-def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor):
+def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+" (Sort by Date - "+str(sort_by_date),
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
@@ -347,9 +347,9 @@ if selected_metric == "CPI":
 	figgen3 = go.Figure(data=datagen3)
 
 
-	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor)
-	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor)
-	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor)
+	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals,hoverlabel_bgcolor)
 	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals, hoverlabel_bgcolor)
 	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals, hoverlabel_bgcolor)
