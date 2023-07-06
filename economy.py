@@ -147,7 +147,7 @@ def figupdategen(fig, df, dates):
 					  paper_bgcolor=None,
 					  height=200, 
 					  width=1100,
-					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
+					  margin=dict(t=10, b=50, l=50, r=50, pad=0),
 					  # yaxis=dict(
 			        # 	  tickmode='array',
 			        	  # ticktext =["<b>"+x+"<b>" for x in list(df.index)],
