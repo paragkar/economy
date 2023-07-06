@@ -124,7 +124,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 					  	  tickfont=dict(size=12)),
 					  xaxis = dict(
 					  side = 'top',
-					  tickmode = 'linear',
+					  tickmode = 'array',
 					  tickvals = dates,
 					  tickformat='%b-%y',
 					  tickangle=-45,
