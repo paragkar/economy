@@ -281,8 +281,8 @@ figupdategen(figgen1, genindex, dates)
 style = "<style>h3 {text-align: left;}</style>"
 
 with tab1:
-	col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 	st.plotly_chart(fig1, use_container_width=True)
+	col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 	col2.plotly_chart(figgen1, use_container_width=True)
 with tab2:
 	st.plotly_chart(fig2, use_container_width=True)
