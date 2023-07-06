@@ -175,9 +175,9 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted):
 		hovertext.append([])
 		for xi, xx in enumerate(dfindex.columns):
 			
-			price_index = dfindex.values[yi][xi]
-			price_inflation = dfinflation.values[yi][xi]
-			weighted_inflation = dfinfweighted.values[yi][xi]
+			price_index = dfindex.loc[yi,xi]
+			price_inflation = dfinflation.loc[yi, xi]
+			weighted_inflation = dfinfweighted.loc[yi,xi]
 			hovertext[-1].append(
 					    'Date: {}\
 					     <br>Sub Catagory : {}\
