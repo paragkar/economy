@@ -207,7 +207,7 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,datano):
 df = loadecofile()
 
 
-selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI"])
+selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India"])
 
 if selected_metric == "CPI":
 
