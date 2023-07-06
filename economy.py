@@ -289,12 +289,12 @@ if selected_metric == "CPI":
 		texttemplate =""
 		tickvals = years
 
-	hovertext = []
+	hovertextgen = []
 	genindex = dfindex.loc["General",:].reset_index().T
 	dfindex = dfindex.drop("General")
 	genindex.columns = list(genindex.loc["Date",:])
 	genindex=genindex.drop("Date")
-	datagen1 = data(genindex,"Rainbow",texttemplate, hovertext)
+	datagen1 = data(genindex,"Rainbow",texttemplate, hovertextgen)
 	figgen1 = go.Figure(data=datagen1)
 
 
@@ -302,7 +302,7 @@ if selected_metric == "CPI":
 	dfinflation = dfinflation.drop("General")
 	geninflation.columns = list(geninflation.loc["Date",:])
 	geninflation=geninflation.drop("Date")
-	datagen2 = data(geninflation,"Rainbow",texttemplate, hovertext)
+	datagen2 = data(geninflation,"Rainbow",texttemplate, hovertextgen)
 	figgen2 = go.Figure(data=datagen2)
 
 
@@ -310,7 +310,7 @@ if selected_metric == "CPI":
 	dfinfweighted = dfinfweighted.drop("General")
 	geninfweighted.columns = list(geninfweighted.loc["Date",:])
 	geninfweighted=geninfweighted.drop("Date")
-	datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertext)
+	datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertextgen)
 	figgen3 = go.Figure(data=datagen3)
 
 
