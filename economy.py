@@ -371,8 +371,13 @@ if selected_metric == "CPI India":
 		col2.plotly_chart(figgen3, use_container_width=True)
 
 if selected_metric == "CPI States":
-	dfcpistates = df["CPI_States"]
-	st.write(dfcpistates)
+	dfcpi = df["CPI_States"]
+	dfcpi =dfcpi.replace("-", np.nan)
+	dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
+	dfcpi["Date"] = [x.date() for x in list(dfcpi["Date"])]
+	dfcpi = dfcpi.set_index("Date")
+
+	st.write(dfcpi)
 
 
 
