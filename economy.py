@@ -146,7 +146,7 @@ def figupdategen(fig, df, dates):
 					  template='simple_white',
 					  paper_bgcolor=None,
 					  height=200, 
-					  width=1200,
+					  width=1100,
 					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
 					  # yaxis=dict(
 			        # 	  tickmode='array',
