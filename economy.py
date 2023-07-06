@@ -263,7 +263,7 @@ if selected_metric == "CPI":
 
 	dfinfweighted = (dfinflation*dfweights)*100
 
-	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfindex.columns)), 0)
+	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfindex.columns), reverse = True), 0)
 
 	dfindex = dfindex.sort_values(sort_by_date, ascending = False)
 
