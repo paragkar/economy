@@ -195,7 +195,7 @@ data1 = data(dfindex,"Rainbow",texttemplate)
 
 data2 = data(dfinflation,"Rainbow",texttemplate)
 
-data2 = data(dfinfweighted,"Rainbow",texttemplate)
+data3 = data(dfinfweighted,"Rainbow",texttemplate)
 
 
 fig1 = go.Figure(data=data1)
