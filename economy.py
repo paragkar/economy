@@ -248,11 +248,14 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:]
 
+st.write(genindex)
 
-datagen1 = data(genindex,"Rainbow",texttemplate)
+# dfindex = dfcpi.reset_index().pivot(index="SubCat", columns ="Date", values =selected_feature).dropna(axis=0)
+
+# datagen1 = data(genindex,"Rainbow",texttemplate)
 
 
-figgen1 = go.Figure(data=datagen1)
+# figgen1 = go.Figure(data=datagen1)
 
 
 #Final plotting of various charts on the output page
@@ -260,7 +263,7 @@ style = "<style>h3 {text-align: left;}</style>"
 with st.container():
 	#plotting the main chart
 	tab1.plotly_chart(fig1, use_container_width=True)
-	tab1.plotly_chart(figgen1, use_container_width=True)
+	# tab1.plotly_chart(figgen1, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
 	tab3.plotly_chart(fig3, use_container_width=True)
 
