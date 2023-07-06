@@ -224,15 +224,17 @@ dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
 
+# genindex = dfindex.loc["General",:].reset_index()
+
 # dfindex = dfindex.drop("General")
 
-genindex = dfindex.loc["General",:].reset_index()
-
+# geninflation = dfinflation.loc["General",:].reset_index()
 
 # dfinflation = dfinflation.drop("General")
 
+# geninfweighted = dfinfweighted.loc["General",:].reset_index()
 
-dfinfweighted = dfinfweighted.drop("General")
+# dfinfweighted = dfinfweighted.drop("General")
 
 dates = dfindex.columns
 
@@ -262,6 +264,30 @@ else:
 	texttemplate =""
 
 
+genindex = dfindex.loc["General",:].reset_index().T
+dfindex = dfindex.drop("General")
+genindex.columns = list(genindex.loc["Date",:])
+genindex=genindex.drop("Date")
+datagen1 = data(genindex,"Rainbow",texttemplate)
+figgen1 = go.Figure(data=datagen1)
+
+
+geninflation = dfinflation.loc["General",:].reset_index().T
+dfinflation = dfinflation.drop("General")
+geninflation.columns = list(geninflation.loc["Date",:])
+geninflation=geninflation.drop("Date")
+datagen2 = data(geninflation,"Rainbow",texttemplate)
+figgen2 = go.Figure(data=datagen2)
+
+
+geninfweighted = dfinfweighted.loc["General",:].reset_index().T
+dfinfweighted = dfinfweighted.drop("General")
+geninfweighted.columns = list(geninfweighted.loc["Date",:])
+geninfweighted=geninfweighted.drop("Date")
+datagen3 = data(geninfweighted,"Rainbow",texttemplate)
+figgen3 = go.Figure(data=datagen3)
+
+
 data1 = data(dfindex,"Rainbow",texttemplate)
 data2 = data(dfinflation,"Rainbow",texttemplate)
 data3 = data(dfinfweighted,"Rainbow",texttemplate)
@@ -270,28 +296,6 @@ data3 = data(dfinfweighted,"Rainbow",texttemplate)
 fig1 = go.Figure(data=data1)
 fig2 = go.Figure(data=data2)
 fig3 = go.Figure(data=data3)
-
-
-genindex = dfindex.loc["General",:].reset_index().T
-genindex.columns = list(genindex.loc["Date",:])
-genindex=genindex.drop("Date")
-datagen1 = data(genindex,"Rainbow",texttemplate)
-figgen1 = go.Figure(data=datagen1)
-
-
-geninflation = dfinflation.loc["General",:].reset_index().T
-geninflation.columns = list(geninflation.loc["Date",:])
-geninflation=geninflation.drop("Date")
-datagen2 = data(geninflation,"Rainbow",texttemplate)
-figgen2 = go.Figure(data=datagen2)
-
-
-geninfweighted = dfinfweighted.loc["General",:].reset_index().T
-geninfweighted.columns = list(geninfweighted.loc["Date",:])
-geninfweighted=geninfweighted.drop("Date")
-datagen3 = data(geninfweighted,"Rainbow",texttemplate)
-figgen3 = go.Figure(data=datagen3)
-
 
 
 figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
