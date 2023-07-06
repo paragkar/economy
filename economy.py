@@ -133,6 +133,12 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature):
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
+def summarychart(summarydf, xcolumn, ycolumn):
+	bar = alt.Chart(summarydf).mark_bar().encode(
+	y = alt.Y(ycolumn+':Q', axis=alt.Axis(labels=False)),
+	x = alt.X(xcolumn+':O', axis=alt.Axis(labels=False)),
+	color = alt.Color(xcolumn+':N', legend=None))
+
 
 df = loadecofile()
 
@@ -198,7 +204,6 @@ dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False
 
 genindex = dfindex.loc["General",:].reset_index()
 
-st.write(genindex)
 
 # dfinflation = dfinflation.drop("General")
 
@@ -241,6 +246,9 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
+genindex = dfindex.loc["General",:].reset_index()
+
+genindexchart = summarychart(genindex, "Date", "General")
 
 
 #Final plotting of various charts on the output page
@@ -250,6 +258,7 @@ with st.container():
 	tab1.plotly_chart(fig1, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
 	tab3.plotly_chart(fig3, use_container_width=True)
+	tab1.altair_chart(genindexchart, use_container_width=True)
 
 
 
