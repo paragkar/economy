@@ -250,6 +250,8 @@ genindex = dfindex.loc["General",:].reset_index()
 
 genindexchart = summarychart(genindex, "Date", "General")
 
+st.altair_chart(genindexchart, use_container_width=True)
+
 
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
@@ -258,7 +260,7 @@ with st.container():
 	tab1.plotly_chart(fig1, use_container_width=True)
 	tab2.plotly_chart(fig2, use_container_width=True)
 	tab3.plotly_chart(fig3, use_container_width=True)
-	st.altair_chart(genindexchart, use_container_width=True)
+	# st.altair_chart(genindexchart, use_container_width=True)
 
 
 
