@@ -200,7 +200,7 @@ start_date, end_date = st.select_slider("Select Range of Dates",
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
 
-tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Contribution"])
+tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Inflation"])
 
 delta = relativedelta(end_date, start_date)
 
