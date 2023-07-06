@@ -223,6 +223,8 @@ if selected_metric == "CPI India":
 
 	index = "SubCat"
 
+	aggmetric ="General"
+
 if selected_metric == "CPI States":
 
 	dfcpi = df["CPI_States"]
@@ -232,6 +234,8 @@ if selected_metric == "CPI States":
 	dfcpi = dfcpi.replace(cpi_states_dict)
 
 	index = "State"
+
+	aggmetric = "All India"
 
 
 
@@ -316,20 +320,20 @@ else:
 	texttemplate =""
 	tickvals = years
 
-genindex = dfindex.loc["General",:].reset_index().T
-dfindex = dfindex.drop("General")
+genindex = dfindex.loc[aggmetric,:].reset_index().T
+dfindex = dfindex.drop(aggmetric)
 genindex.columns = list(genindex.loc["Date",:])
 genindex=genindex.drop("Date")
 
 
-geninflation = dfinflation.loc["General",:].reset_index().T
-dfinflation = dfinflation.drop("General")
+geninflation = dfinflation.loc[aggmetric,:].reset_index().T
+dfinflation = dfinflation.drop(aggmetric)
 geninflation.columns = list(geninflation.loc["Date",:])
 geninflation=geninflation.drop("Date")
 
 
-geninfweighted = dfinfweighted.loc["General",:].reset_index().T
-dfinfweighted = dfinfweighted.drop("General")
+geninfweighted = dfinfweighted.loc[aggmetric,:].reset_index().T
+dfinfweighted = dfinfweighted.drop(aggmetric)
 geninfweighted.columns = list(geninfweighted.loc["Date",:])
 geninfweighted=geninfweighted.drop("Date")
 
