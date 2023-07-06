@@ -159,7 +159,7 @@ def figupdategen(fig, df, dates):
 					  # tickformat='%b-%y',
 					  # tickangle=-45,
 					  dtick = 0), 
-					)
+					))
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 
