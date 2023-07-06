@@ -104,7 +104,7 @@ def data(df,colorscale,texttemplate):
 			]
 	return data
 
-def figupdate(fig, df, dates, x_title_dict, selected_feature):
+def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -115,7 +115,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature):
 					  font=dict(size=10),
 					  template='simple_white',
 					  paper_bgcolor=None,
-					  height=650, 
+					  height=height, 
 					  width=1200,
 					  margin=dict(t=80, b=50, l=50, r=50, pad=0),
 					  yaxis=dict(
@@ -229,34 +229,28 @@ else:
 
 
 data1 = data(dfindex,"Rainbow",texttemplate)
-
 data2 = data(dfinflation,"Rainbow",texttemplate)
-
 data3 = data(dfinfweighted,"Rainbow",texttemplate)
 
 
 fig1 = go.Figure(data=data1)
-
 fig2 = go.Figure(data=data2)
-
 fig3 = go.Figure(data=data3)
 
 
-figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature)
-figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature)
-figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
-
 genindex = dfindex.loc["General",:].reset_index().T
-
 genindex.columns = list(genindex.loc["Date",:])
-
 genindex=genindex.drop("Date")
-
-
 datagen1 = data(genindex,"Rainbow",texttemplate)
-
-
 figgen1 = go.Figure(data=datagen1)
+
+
+
+figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
+figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
+figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
+
+
 
 
 #Final plotting of various charts on the output page
