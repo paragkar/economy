@@ -145,7 +145,7 @@ def figupdategen(fig, df, dates):
 					  font=dict(size=10),
 					  template='simple_white',
 					  paper_bgcolor=None,
-					  height=100, 
+					  height=50, 
 					  width=1100,
 					  margin=dict(t=0, b=25, l=50, r=50, pad=0),
 					  # yaxis=dict(
