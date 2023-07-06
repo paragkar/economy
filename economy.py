@@ -248,6 +248,8 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature)
 
 genindex = dfindex.loc["General",:].reset_index()
 
+st.write(genindex)
+
 genindexchart = summarychart(genindex, "Date", "General")
 
 st.altair_chart(genindexchart, use_container_width=True)
