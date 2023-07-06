@@ -284,6 +284,8 @@ sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfindex.c
 
 dfindex = dfindex.sort_values(sort_by_date, ascending = False)
 
+st.write(dfindex)
+
 dfinflation = dfinflation.sort_values(sort_by_date, ascending = False)
 
 dfinfweighted = dfinfweighted.sort_values(sort_by_date, ascending = False)
