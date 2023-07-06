@@ -109,7 +109,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, h
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+" (Sort by Date - "+str(sort_by_date),
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+" (Sort Date - "+str(sort_by_date)+")",
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
