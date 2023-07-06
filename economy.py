@@ -284,7 +284,7 @@ figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 
-figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 100)
+figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150)
 
 # col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
