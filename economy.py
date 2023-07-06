@@ -207,7 +207,7 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,datano):
 df = loadecofile()
 
 
-selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India"])
+selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India", "CPI States"])
 
 if selected_metric == "CPI India":
 
@@ -369,6 +369,8 @@ if selected_metric == "CPI India":
 		st.plotly_chart(fig3, use_container_width=True)
 		col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
 		col2.plotly_chart(figgen3, use_container_width=True)
+
+if selected_metric == "CPI States":
 
 
 
