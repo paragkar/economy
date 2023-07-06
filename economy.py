@@ -124,7 +124,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 					  	  tickfont=dict(size=12)),
 					  xaxis = dict(
 					  side = 'top',
-					  tickmode = 'array',
+					  tickmode = 'linear',
 					  tickvals = dates,
 					  tickformat='%b-%y',
 					  tickangle=-45,
@@ -224,17 +224,6 @@ dfinflation = dfinflation.sort_values(dfindex.columns[-1], ascending = False)
 
 dfinfweighted = dfinfweighted.sort_values(dfindex.columns[-1], ascending = False)*100
 
-# genindex = dfindex.loc["General",:].reset_index()
-
-# dfindex = dfindex.drop("General")
-
-# geninflation = dfinflation.loc["General",:].reset_index()
-
-# dfinflation = dfinflation.drop("General")
-
-# geninfweighted = dfinfweighted.loc["General",:].reset_index()
-
-# dfinfweighted = dfinfweighted.drop("General")
 
 dates = dfindex.columns
 
@@ -305,8 +294,6 @@ figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature,
 figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150)
 figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150)
 
-
-# col1,col2 = st.columns([0.4,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
 
