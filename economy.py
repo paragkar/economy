@@ -117,7 +117,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height):
 					  paper_bgcolor=None,
 					  height=height, 
 					  width=1200,
-					  margin=dict(t=40, b=25, l=50, r=50, pad=0),
+					  margin=dict(t=40, b=0, l=50, r=50, pad=0),
 					  yaxis=dict(
 			        	  tickmode='array',
 			        	  ticktext =["<b>"+x+"<b>" for x in list(df.index)],
