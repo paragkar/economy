@@ -371,6 +371,7 @@ if selected_metric == "CPI India":
 		col2.plotly_chart(figgen3, use_container_width=True)
 
 if selected_metric == "CPI States":
+	st.write("CPI States")
 
 
 
