@@ -288,9 +288,9 @@ if selected_metric == "CPI":
 	x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
 						"<b>Indian CPI Combined % General Inflation Trend<b>"}
 
-	x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution Trend to Overall (Basis Points)<b>", 
-						  "UrbanIndex":"<b>Indian CPI Urban Contribution Trend to Overall (Basis Points)<b>", 
-						  "CombIndex": "<b>Indian CPI Combined Contribution Trend to Overall (Basis Points)<b>"}
+	x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural Contribution (Basis Points) to Overall Inflation<b>", 
+						  "UrbanIndex":"<b>Indian CPI Urban Contribution (Basis Points) to Overall Inflation<b>", 
+						  "CombIndex": "<b>Indian CPI Combined Contribution (Basis Points) to Overall Inflation<b>"}
 
 	x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
 						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
