@@ -225,6 +225,8 @@ if selected_metric == "CPI India":
 
 	aggmetric ="General"
 
+	col1width = 0.3
+
 if selected_metric == "CPI States":
 
 	dfcpi = df["CPI_States"]
@@ -236,6 +238,8 @@ if selected_metric == "CPI States":
 	index = "State"
 
 	aggmetric = "IND"
+
+	col1width =0 
 
 
 
@@ -376,15 +380,15 @@ style = "<style>h3 {text-align: left;}</style>"
 
 with tab1:
 	st.plotly_chart(fig1, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+	col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 	col2.plotly_chart(figgen1, use_container_width=True)
 with tab2:
 	st.plotly_chart(fig2, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+	col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 	col2.plotly_chart(figgen2, use_container_width=True)
 with tab3:
 	st.plotly_chart(fig3, use_container_width=True)
-	col1,col2 = st.columns([0.3,14]) #create collumns of uneven width
+	col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 	col2.plotly_chart(figgen3, use_container_width=True)
 
 
