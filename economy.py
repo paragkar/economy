@@ -147,7 +147,7 @@ def figupdategen(fig, df, dates):
 					  paper_bgcolor=None,
 					  height=100, 
 					  width=1100,
-					  margin=dict(t=-10, b=50, l=50, r=50, pad=0),
+					  margin=dict(t=0, b=50, l=50, r=50, pad=0),
 					  # yaxis=dict(
 			        # 	  tickmode='array',
 			        	  # ticktext =["<b>"+x+"<b>" for x in list(df.index)],
@@ -276,7 +276,7 @@ figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650)
 
 figupdategen(figgen1, genindex, dates)
 
-col1,col2 = st.columns([0.41,14]) #create collumns of uneven width
+col1,col2 = st.columns([0.42,14]) #create collumns of uneven width
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
 with st.container():
