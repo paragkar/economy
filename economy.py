@@ -209,7 +209,7 @@ df = loadecofile()
 
 selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India"])
 
-if selected_metric == "CPI":
+if selected_metric == "CPI India":
 
 	dfcpi = df["CPI"]
 
