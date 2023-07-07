@@ -210,7 +210,7 @@ def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 
 #function for creating hovertext for gst
 # @st.cache_resource
-def htext_cpi(dfcgsts, dfsgst, dfigst,dfcess,datano):
+def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,datano):
 	if datano==1:
 		dfanchor = dfcgsts.copy()
 	if datano==2:
