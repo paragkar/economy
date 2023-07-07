@@ -86,6 +86,7 @@ def get_selected_date_list(listofallcolumns, start_date, end_date):
 	    # Return a new list containing the dates from index1 to index2 (inclusive)
 	    return listofallcolumns[index1:index2+1]
 
+#function for enabling data for the figure object
 def data(df,colorscale,texttemplate, hovertext):
 	data = [go.Heatmap(
 		z=df.values,
@@ -105,11 +106,13 @@ def data(df,colorscale,texttemplate, hovertext):
 			]
 	return data
 
+#function for updating the layout of the figure for the data object
 def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
 
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+" (Sort Date - "+str(sort_by_date)+")",
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+\
+					  				" (Sort Date - "+str(sort_by_date)+")",
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
