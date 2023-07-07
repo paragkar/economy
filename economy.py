@@ -496,7 +496,24 @@ if selected_metric == "GST India":
 	dfigst = dfigst.sort_values(sort_by_date, ascending = False)
 	dfcess = dfcess.sort_values(sort_by_date, ascending = False)
 
-	st.write(dfcgsts)
+	dfcgststotal = dfcgsts.sum(axis=1)
+
+	st.write(dfcgststotal)
+
+	#selecting the dates for list on the xaxis of the heatmap
+	dates = dfcgsts.columns
+
+	#selecting the years for list on the xaxis when selected dates goes beyond chosen value of 36
+	years = sorted(list(set([x.year for x in list(dfcgsts.columns)])))
+
+
+	#the logic for seleting the texttemplete and tickvals if date range goes beyond a number of months
+	if no_of_months <= 36:
+		texttemplate ="%{z:.1f}"
+		tickvals = dates
+	else:
+		texttemplate =""
+		tickvals = years
 
 
 
