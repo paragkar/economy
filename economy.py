@@ -487,7 +487,7 @@ if selected_metric == "GST India":
 	dfigst = dfigst[date_range_list]
 	dfcess = dfcess[date_range_list]
 
-	st.write(dfcgsts.round(1))
+	st.write(dfcgsts.replace(np.nan,0).round(1))
 
 
 
