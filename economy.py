@@ -106,9 +106,8 @@ def data(df,colorscale,texttemplate, hovertext):
 			]
 	return data
 
-#function for updating the layout of the figure for the data object
+#function for updating the layout of the figure for the data object of heatmap
 def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
-
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
 					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+\
@@ -134,14 +133,15 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, h
 					  tickangle=-45,
 					  dtick = 0), 
 					)
+	#drawing a rectangle around the heatmap
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	#coloring the hoverbox
 	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
 
 
-
+#function for updating the layout of the figure for the data object for general index
 def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals, hoverlabel_bgcolor):
-
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
 					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
@@ -166,14 +166,15 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 					  tickangle=-45,
 					  dtick = 0), 
 					)
+	#drawing a rectangle around the heatmap
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
 
 
-
+#function for creating hovertext for heatmap
 # @st.cache_resource
-def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,datano):
+def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 	if datano==1:
 		dfanchor = dfindex.copy()
 	if datano==2:
@@ -207,9 +208,10 @@ def htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,datano):
 	return hovertext
 
 
+#Loading the datafile
 df = loadecofile()
 
-
+#making a selection for financial metric
 selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India", "CPI States"])
 
 if selected_metric == "CPI India":
@@ -246,6 +248,7 @@ if selected_metric == "CPI States":
 
 
 
+#main program after making the selection for financial metric
 dfcpi =dfcpi.replace("-", np.nan)
 
 dfcpi["Date"] = pd.to_datetime(dfcpi["Date"])
@@ -264,62 +267,60 @@ dfweights = dfcpi.reset_index().pivot(index=index, columns ="Date", values =sele
 
 dfinflation = (((dfindex - dfindex.shift(12,axis=1))/dfindex.shift(12,axis=1))*100).round(1)
 
-
+#slider for selecting the range of dates 
 start_date, end_date = st.select_slider("Select Range of Dates", 
 					options = list(dfindex.columns), value =(dfindex.columns[-18],dfindex.columns[-1]))
 
-
+#defining the tabs for rendering the heatmaps for different features
 tab1, tab2, tab3 = st.tabs(["Price Index", "Price Inflation", "Weighted Inflation"])
 
+#calculating the difference in number of months between selected dates
 delta = relativedelta(end_date, start_date)
 
 no_of_months = delta.years * 12 + delta.months
 
-
+#selecting the date for filtering the dataframe
 date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
 
-
+#filtering the dataframe with the selected range of dates
 dfindex = dfindex[date_range_list] #filter the dataframe with the selected dates
-
 dfinflation = dfinflation[date_range_list] #filter the dataframe with the selected dates
-
 dfweights = dfweights[date_range_list]
 
+#calculating the dataframe for measuring the contribution of items to the total inflation (basis points)
 dfinfweighted = (dfinflation*dfweights)*100
 
+#selecting the date for sorting the dataframe
 sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfindex.columns), reverse = True), 0)
 
-dfindex = dfindex.sort_values(sort_by_date, ascending = False)
+#sorting the dataframe with the selected dates
+dfindex = dfindex.sort_values(sort_by_date, ascending = False).replace(0, np.nan).dropna(axis=0)
+dfinflation = dfinflation.sort_values(sort_by_date, ascending = False)..replace(0, np.nan).dropna(axis=0)
+dfinfweighted = dfinfweighted.sort_values(sort_by_date, ascending = False)..replace(0, np.nan).dropna(axis=0)
 
-dfinflation = dfinflation.sort_values(sort_by_date, ascending = False)
-
-dfinfweighted = dfinfweighted.sort_values(sort_by_date, ascending = False)
-
-
+#selecting the dates for list on the xaxis of the heatmap
 dates = dfindex.columns
 
+#selecting the years for list on the xaxis when selected dates goes beyond chosen value of 36
 years = sorted(list(set([x.year for x in list(dfindex.columns)])))
 
+#dictionary for defining the title of the heatmaps renders on the screen
 x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined Trend<b>"}
-
 x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
 					"<b>Indian CPI General Combined Trend<b>"}
-
 x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined % Inflation Trend<b>"}
-
 x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
 					"<b>Indian CPI Combined % General Inflation Trend<b>"}
-
 x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
 					  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
 					  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
-
 x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
 					      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
 					      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
+#the logic for seleting the texttemplete and tickvals if date range goes beyond a number of months
 if no_of_months <= 36:
 	texttemplate ="%{z:.1f}"
 	tickvals = dates
@@ -327,6 +328,7 @@ else:
 	texttemplate =""
 	tickvals = years
 
+#preparing the dataframe for general items for total to be listed below each heatmap
 genindex = dfindex.loc[aggmetric,:].reset_index().T
 dfindex = dfindex.drop(aggmetric)
 genindex.columns = list(genindex.loc["Date",:])
@@ -345,15 +347,17 @@ geninfweighted.columns = list(geninfweighted.loc["Date",:])
 geninfweighted=geninfweighted.drop("Date")
 
 
-hovertext1 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,1)
-hovertext2 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,2)
-hovertext3 = htext_cpi_subcat(dfindex, dfinflation, dfinfweighted,3)
-hovertextgen1 = htext_cpi_subcat(genindex, geninflation, geninfweighted,1)
-hovertextgen2 = htext_cpi_subcat(genindex, geninflation, geninfweighted,2)
-hovertextgen3 = htext_cpi_subcat(genindex, geninflation, geninfweighted,3)
+#preparing hovertext for each dataframe
+hovertext1 = htext_cpi(dfindex, dfinflation, dfinfweighted,1)
+hovertext2 = htext_cpi(dfindex, dfinflation, dfinfweighted,2)
+hovertext3 = htext_cpi(dfindex, dfinflation, dfinfweighted,3)
+hovertextgen1 = htext_cpi(genindex, geninflation, geninfweighted,1)
+hovertextgen2 = htext_cpi(genindex, geninflation, geninfweighted,2)
+hovertextgen3 = htext_cpi(genindex, geninflation, geninfweighted,3)
 hoverlabel_bgcolor = "#000000" #subdued black
 
 
+#calculating data for individual figures of heatmaps
 data1 = data(dfindex,"Rainbow",texttemplate, hovertext1)
 data2 = data(dfinflation,"Rainbow",texttemplate, hovertext2)
 data3 = data(dfinfweighted,"Rainbow",texttemplate, hovertext3)
@@ -362,7 +366,7 @@ datagen2 = data(geninflation,"Rainbow",texttemplate, hovertextgen2)
 datagen3 = data(geninfweighted,"Rainbow",texttemplate, hovertextgen3)
 
 
-
+#defining the figure object of individual heatmaps
 fig1 = go.Figure(data=data1)
 fig2 = go.Figure(data=data2)
 fig3 = go.Figure(data=data3)
@@ -370,7 +374,7 @@ figgen1 = go.Figure(data=datagen1)
 figgen2 = go.Figure(data=datagen2)
 figgen3 = go.Figure(data=datagen3)
 
-
+#updating the figure of individual heatmaps
 figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
@@ -380,7 +384,6 @@ figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_fe
 
 #Final plotting of various charts on the output page
 style = "<style>h3 {text-align: left;}</style>"
-
 with tab1:
 	st.plotly_chart(fig1, use_container_width=True)
 	col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
