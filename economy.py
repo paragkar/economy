@@ -458,6 +458,8 @@ if selected_metric == "GST India":
 
 	dfgst = dfgst.set_index("Date")
 
+	dfgst = dfgst.replace("-",0)
+
 	dfgst["Amount"] = dfgst["Amount"].astype("float")
 
 	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum()
