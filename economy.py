@@ -230,7 +230,7 @@ if selected_metric == "CPI India":
 
 	aggmetric ="General"
 
-	col1width = 0.3
+	col1width = 0.32
 
 if selected_metric == "CPI States":
 
