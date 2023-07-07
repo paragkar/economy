@@ -487,6 +487,18 @@ if selected_metric == "GST India":
 	dfigst = dfigst[date_range_list].replace(np.nan,0).round(1)
 	dfcess = dfcess[date_range_list].replace(np.nan,0).round(1)
 
+	#selecting the date for sorting the dataframe
+	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfcgsts.columns), reverse = True), 0)
+
+	#sorting the dataframe with the selected dates
+	dfcgsts = dfcgsts.sort_values(sort_by_date, ascending = False)
+	dfsgst = dfsgst.sort_values(sort_by_date, ascending = False)
+	dfigst = dfigst.sort_values(sort_by_date, ascending = False)
+	dfcess = dfcess.sort_values(sort_by_date, ascending = False)
+
+	st.write(dfcgsts)
+
+
 
 
 
