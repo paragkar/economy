@@ -593,6 +593,8 @@ if selected_metric == "GST India":
 
 
 
+	st.plotly_chart(fig1, use_container_width=True)
+
 
 
 
