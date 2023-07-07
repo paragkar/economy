@@ -189,7 +189,7 @@ def figupdategst(fig, df, dates, x_title_dict,height, tickvals, hoverlabel_bgcol
 					  margin=dict(t=40, b=0, l=50, r=50, pad=0),
 					  yaxis=dict(
 			        	  tickmode='array',
-			        	  ticktext =["<b>"+x+"<b>" for x in list(df.dfcgsts)],
+			        	  ticktext =["<b>"+x+"<b>" for x in list(df.index)],
 					  	  tickfont=dict(size=12)),
 					  xaxis = dict(
 					  side = 'top',
