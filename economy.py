@@ -347,6 +347,11 @@ geninfweighted.columns = list(geninfweighted.loc["Date",:])
 geninfweighted=geninfweighted.drop("Date")
 
 
+dfindex = dfindex.replace(0,np.nan).dropna(axis=0)
+dfinflation = dfinflation.replace(0,np.nan).dropna(axis=0)
+dfinfweighted = dfinfweighted.replace(0,np.nan).dropna(axis=0)
+
+
 #preparing hovertext for each dataframe
 hovertext1 = htext_cpi(dfindex, dfinflation, dfinfweighted,1)
 hovertext2 = htext_cpi(dfindex, dfinflation, dfinfweighted,2)
