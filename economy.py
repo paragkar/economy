@@ -107,7 +107,7 @@ def data(df,colorscale,texttemplate, hovertext):
 	return data
 
 #function for updating the layout of the figure for the data object of cpi
-def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
+def figupdatecpi(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
 					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+\
@@ -141,7 +141,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, h
 
 
 #function for updating the layout of the figure for the data object for general index cpi
-def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals, hoverlabel_bgcolor):
+def figupdatecpigen(fig, df, dates, x_title_dict, selected_feature, height, tickvals, hoverlabel_bgcolor):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
 					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
@@ -170,6 +170,72 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
 	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
 	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
+
+
+#function for updating the layout of the figure for the data object of gst
+def figupdategst(fig, df, dates, x_title_dict,height, tickvals, hoverlabel_bgcolor, sort_by_date):
+	fig.update_layout(uniformtext_minsize=14, 
+					  uniformtext_mode='hide', 
+					  # xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+\
+					  # 				" (Sort Date - "+str(sort_by_date)+")",
+					  xaxis_title_font=dict(size=18),
+					  yaxis_title=None, 
+					  yaxis_autorange='reversed',
+					  font=dict(size=10),
+					  template='simple_white',
+					  paper_bgcolor=None,
+					  height=height, 
+					  width=1200,
+					  margin=dict(t=40, b=0, l=50, r=50, pad=0),
+					  yaxis=dict(
+			        	  tickmode='array',
+			        	  ticktext =["<b>"+x+"<b>" for x in list(df.dfcgsts)],
+					  	  tickfont=dict(size=12)),
+					  xaxis = dict(
+					  side = 'top',
+					  tickmode = 'array',
+					  tickvals = tickvals,
+					  tickformat='%b-%y',
+					  tickangle=-45,
+					  dtick = 0), 
+					)
+	#drawing a rectangle around the heatmap
+	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	#coloring the hoverbox
+	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
+
+#function for updating the layout of the figure for the data object for total in gst
+def figupdategsttot(fig, df, dates, x_title_dict, height, tickvals, hoverlabel_bgcolor):
+	fig.update_layout(uniformtext_minsize=14, 
+					  uniformtext_mode='hide', 
+					  # xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title_font=dict(size=18),
+					  yaxis_title=None, 
+					  yaxis_autorange='reversed',
+					  font=dict(size=10),
+					  template='simple_white',
+					  paper_bgcolor=None,
+					  height=height, 
+					  width=1100,
+					  margin=dict(t=80, b=25, l=50, r=50, pad=0),
+					  yaxis=dict(
+			        	  ticktext =[],
+			        	  tickvals =[],
+					  	  ticks =""),
+					  xaxis = dict(
+					  side = 'top',
+					  tickmode = 'array',
+					  tickvals = tickvals,
+					  tickformat='%b-%y',
+					  tickangle=-45,
+					  dtick = 0), 
+					)
+	#drawing a rectangle around the heatmap
+	fig.update_xaxes(fixedrange=True,showline=True,linewidth=1.2,linecolor='black', mirror=True)
+	fig.update_yaxes(fixedrange=True,showline=True, linewidth=1.2, linecolor='black', mirror=True)
+	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
+
 
 
 #function for creating hovertext for cpi
@@ -452,13 +518,14 @@ if selected_metric in ["CPI India", "CPI States"]:
 	figgen2 = go.Figure(data=datagen2)
 	figgen3 = go.Figure(data=datagen3)
 
+
 	#updating the figure of individual heatmaps
-	figupdate(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdate(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdate(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals,hoverlabel_bgcolor)
-	figupdategen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals, hoverlabel_bgcolor)
-	figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals, hoverlabel_bgcolor)
+	figupdatecpi(fig1, dfindex, dates, x_axis_title_dict1, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdatecpi(fig2, dfindex, dates, x_axis_title_dict2, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdatecpi(fig3, dfindex, dates, x_axis_title_dict3, selected_feature, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdatecpigen(figgen1, genindex, dates, x_axis_title_gen_dict1, selected_feature, 150, tickvals,hoverlabel_bgcolor)
+	figupdatecpigen(figgen2, geninflation, dates, x_axis_title_gen_dict2, selected_feature, 150, tickvals, hoverlabel_bgcolor)
+	figupdatecpigen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_feature, 150, tickvals, hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
@@ -592,11 +659,45 @@ if selected_metric == "GST India":
 	figtot4 = go.Figure(data=datatot4)
 
 
+	#dictionary for defining the title of the heatmaps renders on the screen
+	x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined Trend<b>"}
+	x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
+						"<b>Indian CPI General Combined Trend<b>"}
+	x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined % Inflation Trend<b>"}
+	x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
+						"<b>Indian CPI Combined % General Inflation Trend<b>"}
+	x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
+						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
+						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
+	x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
+						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
+						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
+	x_axis_title_dict4 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
+						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
+						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
+	x_axis_title_gen_dict4 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
+						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
+						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
+
+
+	#updating the figure of individual heatmaps
+	figupdategst(fig1, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig2, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig3, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig4, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
+	figupdategsttot(figtot2, dfsgsttotal, dates, x_axis_title_gen_dict2, 150, tickvals, hoverlabel_bgcolor)
+	figupdategsttot(figtot3, dfigsttotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
+	figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
+
+
+	#Final plotting of various charts on the output page
+	style = "<style>h3 {text-align: left;}</style>"
 	st.plotly_chart(fig1, use_container_width=True)
-
-
-
+	st.plotly_chart(figtot1, use_container_width=True)
 
 
 
