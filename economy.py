@@ -392,24 +392,24 @@ figupdategen(figgen3, geninfweighted, dates, x_axis_title_gen_dict3, selected_fe
 style = "<style>h3 {text-align: left;}</style>"
 with tab1:
 	st.plotly_chart(fig1, use_container_width=True)
-	selected_metric == "CPI India":
+	if selected_metric == "CPI India":
 		col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 		col2.plotly_chart(figgen1, use_container_width=True)
-	selected_metric == "CPI States":
+	if selected_metric == "CPI States":
 		st.plotly_chart(figgen1, use_container_width=True)
 with tab2:
 	st.plotly_chart(fig2, use_container_width=True)
-	selected_metric == "CPI India":
+	if selected_metric == "CPI India":
 		col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 		col2.plotly_chart(figgen2, use_container_width=True)
-	selected_metric == "CPI States":
+	if selected_metric == "CPI States":
 		st.plotly_chart(figgen2, use_container_width=True)
 with tab3:
 	st.plotly_chart(fig3, use_container_width=True)
-	selected_metric == "CPI India":
+	if selected_metric == "CPI India":
 		col1,col2 = st.columns([col1width,14]) #create collumns of uneven width
 		col2.plotly_chart(figgen3, use_container_width=True)
-	selected_metric == "CPI States":
+	if selected_metric == "CPI States":
 		st.plotly_chart(figgen3, use_container_width=True)
 
 
