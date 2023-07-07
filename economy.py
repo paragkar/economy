@@ -212,7 +212,7 @@ def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 df = loadecofile()
 
 #making a selection for financial metric
-selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India", "CPI States"])
+selected_metric = st.sidebar.selectbox("Select a Metric", ["CPI India", "CPI States", "GST India"])
 
 if selected_metric == "CPI India":
 
@@ -411,6 +411,12 @@ with tab3:
 		col2.plotly_chart(figgen3, use_container_width=True)
 	if selected_metric == "CPI States":
 		st.plotly_chart(figgen3, use_container_width=True)
+
+if selected_metric == "GST India":
+
+	dfgst = df["GST"]
+
+	st.write(dfgst)
 
 
 
