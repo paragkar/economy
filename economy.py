@@ -469,8 +469,10 @@ if selected_metric == "GST India":
 	dfsgst = dfsgst.pivot(index = "State", columns = "Date", values = "Amount")
 	dfigst = dfigst.pivot(index = "State", columns = "Date", values = "Amount")
 	dfcess = dfcess.pivot(index = "State", columns = "Date", values = "Amount")
-	st.write(dfcess)
-	# dfcgsts = dfcgsts.replace(0,np.nan).dropna(axis=0, how='all')
+
+	start_date, end_date = st.select_slider("Select Range of Dates", 
+						options = list(dfcgsts.columns), value =(dfcgsts.columns[-18],dfcgsts.columns[-1]))
+
 
 
 
