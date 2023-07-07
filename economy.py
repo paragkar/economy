@@ -244,7 +244,7 @@ if selected_metric == "CPI States":
 
 	aggmetric = "IND"
 
-	col1width = 0.00001 
+	col1width = 0.000000001 
 
 
 
