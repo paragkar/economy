@@ -294,9 +294,9 @@ dfinfweighted = (dfinflation*dfweights)*100
 sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfindex.columns), reverse = True), 0)
 
 #sorting the dataframe with the selected dates
-dfindex = dfindex.sort_values(sort_by_date, ascending = False).replace(0, np.nan).dropna(axis=0)
-dfinflation = dfinflation.sort_values(sort_by_date, ascending = False).replace(0, np.nan).dropna(axis=0)
-dfinfweighted = dfinfweighted.sort_values(sort_by_date, ascending = False).replace(0, np.nan).dropna(axis=0)
+dfindex = dfindex.sort_values(sort_by_date, ascending = False)
+dfinflation = dfinflation.sort_values(sort_by_date, ascending = False)
+dfinfweighted = dfinfweighted.sort_values(sort_by_date, ascending = False)
 
 #selecting the dates for list on the xaxis of the heatmap
 dates = dfindex.columns
