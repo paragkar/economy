@@ -479,7 +479,7 @@ if selected_metric == "GST India":
 	no_of_months = delta.years * 12 + delta.months
 
 	#selecting the date for filtering the dataframe
-	date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
+	date_range_list = get_selected_date_list(list(dfcgsts.columns), start_date, end_date)
 
 	#filtering the dataframe with the selected range of dates
 	dfcgsts = dfcgsts[date_range_list]
