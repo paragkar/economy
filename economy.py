@@ -541,7 +541,7 @@ if selected_metric == "GST India":
 	dfigsttotal = dfigst.sum(axis=0).to_frame()
 	dfcesstotal = dfcess.sum(axis=0).to_frame()
 
-	st.write(dfcesstotal.to_frame())
+	# st.write(dfcesstotal.to_frame())
 
 	#selecting the dates for list on the xaxis of the heatmap
 	dates = dfcgsts.columns
