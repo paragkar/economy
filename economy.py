@@ -473,6 +473,23 @@ if selected_metric == "GST India":
 	start_date, end_date = st.select_slider("Select Range of Dates", 
 						options = list(dfcgsts.columns), value =(dfcgsts.columns[-18],dfcgsts.columns[-1]))
 
+	#calculating the difference in number of months between selected dates
+	delta = relativedelta(end_date, start_date)
+
+	no_of_months = delta.years * 12 + delta.months
+
+	#selecting the date for filtering the dataframe
+	date_range_list = get_selected_date_list(list(dfindex.columns), start_date, end_date)
+
+	#filtering the dataframe with the selected range of dates
+	dfcgsts = dfcgsts[date_range_list]
+	dfsgst = dfsgst[date_range_list] 
+	dfigst = dfigst[date_range_list]
+	dfcess = dfcess[date_range_list]
+
+	st.write(dfcgsts)
+
+
 
 
 
