@@ -458,12 +458,13 @@ if selected_metric == "GST India":
 
 	dfgst = dfgst.set_index("Date")
 
-	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type")
-	dfsgst = dfgst[dfgst["Type"]=="SGST"].drop(columns = "Type")
-	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type")
-	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type")
+	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type").reset_index()
+	dfsgst = dfgst[dfgst["Type"]=="SGST"].drop(columns = "Type").reset_index()
+	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type").reset_index()
+	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type").reset_index()
 
-	st.write(dfcess)
+	dfcgst = dfcgst.pivot(index = "State", columns = "Date", values = "Amount" )
+	st.write(dfcgst)
 
 
 
