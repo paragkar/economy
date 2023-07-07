@@ -106,7 +106,7 @@ def data(df,colorscale,texttemplate, hovertext):
 			]
 	return data
 
-#function for updating the layout of the figure for the data object of heatmap
+#function for updating the layout of the figure for the data object of cpi
 def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, hoverlabel_bgcolor, sort_by_date):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -140,7 +140,7 @@ def figupdate(fig, df, dates, x_title_dict, selected_feature,height, tickvals, h
 	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
 
 
-#function for updating the layout of the figure for the data object for general index
+#function for updating the layout of the figure for the data object for general index cpi
 def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickvals, hoverlabel_bgcolor):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
@@ -172,7 +172,7 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 	fig.update_traces(hoverlabel=dict(bgcolor=hoverlabel_bgcolor,font=dict(size=12, color='white')))
 
 
-#function for creating hovertext for heatmap
+#function for creating hovertext for cpi
 # @st.cache_resource
 def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 	if datano==1:
@@ -203,6 +203,46 @@ def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 					    price_index,
 					    round(price_inflation,1),
 					    round(weighted_inflation,1),
+					    )
+					    )
+	return hovertext
+
+
+#function for creating hovertext for gst
+# @st.cache_resource
+def htext_cpi(dfcgsts, dfsgst, dfigst,dfcess,datano):
+	if datano==1:
+		dfanchor = dfcgsts.copy()
+	if datano==2:
+		dfanchor = dfsgst.copy()
+	if datano==3:
+		dfanchor = dfigst.copy()
+	if datano==4:
+		dfanchor = dfcess.copy()
+	hovertext = []
+	for yi, yy in enumerate(dfanchor.index):
+		hovertext.append([])
+		for xi, xx in enumerate(dfanchor.columns):
+			
+			cgst= dfcgsts.loc[yy,xx]
+			sgst = dfsgst.loc[yy, xx]
+			igst = dfigst.loc[yy,xx]
+			cess = dfcess.loc[yy,xx]
+			hovertext[-1].append(
+					    'Date: {}\
+					     <br>State : {}\
+					     <br>CGST: {} Rs Cr\
+					     <br>SGST: {} Rs Cr\
+					     <br>IGST {} Rs Cr\
+					     <br>CESS {} Rs Cr'
+
+				     .format(
+					    xx,
+					    yy,
+					    cgst,
+					    sgst,
+					    igst,
+					    cess,
 					    )
 					    )
 	return hovertext
@@ -518,8 +558,38 @@ if selected_metric == "GST India":
 		texttemplate =""
 		tickvals = years
 
+	#preparing hovertext for each dataframe
+	hovertext1 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,1)
+	hovertext2 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,2)
+	hovertext3 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,3)
+	hovertext4 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,4)
+	hovertexttot1 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,1)
+	hovertexttot2 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,2)
+	hovertexttot3 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,3)
+	hovertexttot4 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,4)
+	hoverlabel_bgcolor = "#000000" #subdued black
 
 
+	#calculating data for individual figures of heatmaps
+	data1 = data(dfcgsts,"Rainbow",texttemplate, hovertext1)
+	data2 = data(dfsgst,"Rainbow",texttemplate, hovertext2)
+	data3 = data(dfigst,"Rainbow",texttemplate, hovertext3)
+	data4 = data(dfcess,"Rainbow",texttemplate, hovertext4)
+	datatot1 = data(dfcgststotal,"Rainbow",texttemplate, hovertexttot1)
+	datatot2 = data(dfsgsttotal,"Rainbow",texttemplate, hovertexttot2)
+	datatot3 = data(dfigsttotal,"Rainbow",texttemplate, hovertexttot3)
+	datatot4 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot4)
+
+
+	#defining the figure object of individual heatmaps
+	fig1 = go.Figure(data=data1)
+	fig2 = go.Figure(data=data2)
+	fig3 = go.Figure(data=data3)
+	fig4 = go.Figure(data=data4)
+	figtot1 = go.Figure(data=datatot1)
+	figtot2 = go.Figure(data=datatot2)
+	figtot3 = go.Figure(data=datatot3)
+	figtot4 = go.Figure(data=datatot4)
 
 
 
