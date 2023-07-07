@@ -636,7 +636,7 @@ if selected_metric == "GST India":
 
 
 	#calculating data for individual figures of heatmaps
-	data1 = data(dfcgsts,"Red",texttemplate, hovertext1)
+	data1 = data(dfcgsts,"Reds",texttemplate, hovertext1)
 	data2 = data(dfsgst,"Rainbow",texttemplate, hovertext2)
 	data3 = data(dfigst,"Rainbow",texttemplate, hovertext3)
 	data4 = data(dfcess,"Rainbow",texttemplate, hovertext4)
