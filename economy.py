@@ -452,6 +452,12 @@ if selected_metric == "GST India":
 
 	dfgst = dfgst.replace(gst_state_dict)
 
+	dfgst["Date"] = pd.to_datetime(dfgst["Date"])
+
+	dfgst["Date"] = [x.date() for x in list(dfgst["Date"])]
+
+	dfgst = dfgst.set_index("Date")
+
 	st.write(dfgst)
 
 
