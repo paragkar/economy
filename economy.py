@@ -459,8 +459,11 @@ if selected_metric == "GST India":
 	dfgst = dfgst.set_index("Date")
 
 	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type")
+	dfsgst = dfgst[dfgst["Type"]=="SGST"].drop(columns = "Type")
+	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type")
+	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type")
 
-	st.write(dfcgsts)
+	st.write(dfcess)
 
 
 
