@@ -154,10 +154,9 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 					  height=height, 
 					  width=1100,
 					  margin=dict(t=80, b=25, l=50, r=50, pad=0),
-					  # yaxis=dict(
-			        # 	  tickmode='array',
-			        	  # ticktext =["<b>"+x+"<b>" for x in list(df.index)],
-					  	  # tickfont=dict(size=12)),
+					  yaxis=dict(
+			        	  ticktext =[],
+					  	  ticks ="")
 					  xaxis = dict(
 					  side = 'top',
 					  tickmode = 'array',
