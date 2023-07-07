@@ -482,12 +482,11 @@ if selected_metric == "GST India":
 	date_range_list = get_selected_date_list(list(dfcgsts.columns), start_date, end_date)
 
 	#filtering the dataframe with the selected range of dates
-	dfcgsts = dfcgsts[date_range_list]
-	dfsgst = dfsgst[date_range_list] 
-	dfigst = dfigst[date_range_list]
-	dfcess = dfcess[date_range_list]
+	dfcgsts = dfcgsts[date_range_list].replace(np.nan,0).round(1)
+	dfsgst = dfsgst[date_range_list].replace(np.nan,0).round(1)
+	dfigst = dfigst[date_range_list].replace(np.nan,0).round(1)
+	dfcess = dfcess[date_range_list].replace(np.nan,0).round(1)
 
-	st.write(dfcgsts.replace(np.nan,0).round(1))
 
 
 
