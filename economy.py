@@ -536,10 +536,10 @@ if selected_metric == "GST India":
 	dfigst = dfigst.sort_values(sort_by_date, ascending = False)
 	dfcess = dfcess.sort_values(sort_by_date, ascending = False)
 
-	dfcgststotal = dfcgsts.sum(axis=0)
-	dfsgsttotal = dfsgst.sum(axis=0)
-	dfigsttotal = dfigst.sum(axis=0)
-	dfcesstotal = dfcess.sum(axis=0)
+	dfcgststotal = dfcgsts.sum(axis=0).to_frame()
+	dfsgsttotal = dfsgst.sum(axis=0).to_frame()
+	dfigsttotal = dfigst.sum(axis=0).to_frame()
+	dfcesstotal = dfcess.sum(axis=0).to_frame()
 
 	st.write(dfcesstotal.to_frame())
 
