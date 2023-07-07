@@ -460,12 +460,12 @@ if selected_metric == "GST India":
 
 	dfgst['Amount'] = pd.to_numeric(dfgst['Amount'], errors='coerce')
 
-	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum()
-	dfsgst = dfgst[dfgst["Type"]=="SGST"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum()
-	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum()
-	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum()
+	dfcgsts = dfgst[dfgst["Type"]=="CGSTS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
+	dfsgst = dfgst[dfgst["Type"]=="SGST"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
+	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
+	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
 
-	# dfcgsts = dfcgsts.pivot(index = "State", columns = "Date", values = "Amount" )
+	dfcgsts = dfcgsts.pivot(index = "State", columns = "Date", values = "Amount" )
 	st.write(dfcgsts)
 
 
