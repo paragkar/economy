@@ -466,7 +466,7 @@ if selected_metric == "GST India":
 	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
 
 	dfcgsts = dfcgsts.pivot(index = "State", columns = "Date", values = "Amount" )
-	st.write(dfcgsts)
+	st.write(dfcgsts.replace(0,np.nan).dropna(axis=0, how='all'))
 
 
 
