@@ -497,7 +497,7 @@ if selected_metric == "GST India":
 	dfcess = dfcess.sort_values(sort_by_date, ascending = False)
 
 	dfcgststotal = dfcgsts.sum(axis=0)
-	dfcgststotal.columns = ["Total"]
+	dfcgststotal.index = ["Total"]
 
 	st.write(dfcgststotal)
 
