@@ -156,6 +156,7 @@ def figupdategen(fig, df, dates, x_title_dict, selected_feature, height, tickval
 					  margin=dict(t=80, b=25, l=50, r=50, pad=0),
 					  yaxis=dict(
 			        	  ticktext =[],
+			        	  tickvals =[],
 					  	  ticks =""),
 					  xaxis = dict(
 					  side = 'top',
