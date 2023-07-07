@@ -465,8 +465,12 @@ if selected_metric == "GST India":
 	dfigst = dfgst[dfgst["Type"]=="IGST"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
 	dfcess = dfgst[dfgst["Type"]=="CESS"].drop(columns = "Type").reset_index().groupby(["Date","State"])["Amount"].sum().reset_index()
 
-	dfcgsts = dfcgsts.pivot(index = "State", columns = "Date", values = "Amount" )
-	st.write(dfcgsts.replace(0,np.nan).dropna(axis=0, how='all'))
+	dfcgsts = dfcgsts.pivot(index = "State", columns = "Date", values = "Amount")
+	dfsgst = dfsgst.pivot(index = "State", columns = "Date", values = "Amount")
+	dfigst = dfigst.pivot(index = "State", columns = "Date", values = "Amount")
+	dfcess = dfcess.pivot(index = "State", columns = "Date", values = "Amount")
+	st.write(dfcess)
+	# dfcgsts = dfcgsts.replace(0,np.nan).dropna(axis=0, how='all')
 
 
 
