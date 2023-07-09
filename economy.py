@@ -608,12 +608,6 @@ if selected_metric == "GST India":
 	dfigsttotal = dfigst.sum(axis=0).to_frame().T
 	dfcesstotal = dfcess.sum(axis=0).to_frame().T
 
-	st.write(dfcgsts)
-
-	dfcgsts = dfcgsts.head(20)
-	dfsgst = dfsgst.head(20)
-	dfigst = dfigst.head(20)
-	dfcess = dfcess.head(20)
 
 	#selecting the dates for list on the xaxis of the heatmap
 	dates = dfcgsts.columns
@@ -640,6 +634,12 @@ if selected_metric == "GST India":
 	hovertexttot3 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,3)
 	hovertexttot4 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,4)
 	hoverlabel_bgcolor = "#000000" #subdued black
+
+
+	dfcgsts = dfcgsts.head(20)
+	dfsgst = dfsgst.head(20)
+	dfigst = dfigst.head(20)
+	dfcess = dfcess.head(20)
 
 
 	#calculating data for individual figures of heatmaps
