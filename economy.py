@@ -641,7 +641,7 @@ if selected_metric == "GST India":
 	dfigst = dfigst.head(20)
 	dfcess = dfcess.head(20)
 
-	dfcgstsprec = round((dfcgsts/dfcgststotal)*100,1)
+	dfcgstsprec = round((dfcgsts/dfcgststotal.values)*100,1)
 
 	st.write(dfcgstsprec)
 
