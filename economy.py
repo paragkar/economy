@@ -276,7 +276,7 @@ def htext_cpi(dfindex, dfinflation, dfinfweighted,datano):
 
 #function for creating hovertext for gst
 # @st.cache_resource
-def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,datano):
+def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall, datano):
 	if datano==1:
 		dfanchor = dfcgsts.copy()
 	if datano==2:
@@ -285,6 +285,8 @@ def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,datano):
 		dfanchor = dfigst.copy()
 	if datano==4:
 		dfanchor = dfcess.copy()
+	if datano==5:
+		dfanchor = dfgstall.copy()
 	hovertext = []
 	for yi, yy in enumerate(dfanchor.index):
 		hovertext.append([])
@@ -294,13 +296,15 @@ def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,datano):
 			sgst = dfsgst.loc[yy, xx]
 			igst = dfigst.loc[yy,xx]
 			cess = dfcess.loc[yy,xx]
+			gstall = dfgstall.loc[yy,xx]
 			hovertext[-1].append(
 					    'Date: {}\
 					     <br>State : {}\
 					     <br>CGST: {} Rs Cr\
 					     <br>SGST: {} Rs Cr\
 					     <br>IGST {} Rs Cr\
-					     <br>CESS {} Rs Cr'
+					     <br>CESS {} Rs Cr\
+					     <br>Total {} Rs Cr'
 
 				     .format(
 					    xx,
@@ -309,6 +313,7 @@ def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,datano):
 					    sgst,
 					    igst,
 					    cess,
+					    gstall,
 					    )
 					    )
 	return hovertext
@@ -630,14 +635,16 @@ if selected_metric == "GST India":
 		tickvals = years
 
 	#preparing hovertext for each dataframe
-	hovertext1 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,1)
-	hovertext2 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,2)
-	hovertext3 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,3)
-	hovertext4 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,4)
-	hovertexttot1 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,1)
-	hovertexttot2 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,2)
-	hovertexttot3 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,3)
-	hovertexttot4 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,4)
+	hovertext1 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,,dfgstall,1)
+	hovertext2 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,2)
+	hovertext3 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,3)
+	hovertext4 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,4)
+	hovertext5 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,5)
+	hovertexttot1 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,dfgstalltotal,1)
+	hovertexttot2 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,dfgstalltotal,2)
+	hovertexttot3 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,dfgstalltotal,3)
+	hovertexttot4 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,dfgstalltotal,4)
+	hovertexttot5 = htext_gst(dfcgststotal, dfsgsttotal, dfigsttotal,dfcesstotal,dfgstalltotal,5)
 	hoverlabel_bgcolor = "#000000" #subdued black
 
 	#truncate the data to 20 states
@@ -655,18 +662,18 @@ if selected_metric == "GST India":
 	dfcessprec = round((dfcess/dfcesstotal.values)*100,1)
 	dfgstallprec = round((dfgstall/dfgstalltotal.values)*100,1)
 
-	st.write(dfgstallprec)
-
 
 	#calculating data for individual figures of heatmaps
 	data1 = data(dfcgsts,"Rainbow",texttemplate, hovertext1)
 	data2 = data(dfsgst,"Rainbow",texttemplate, hovertext2)
 	data3 = data(dfigst,"Rainbow",texttemplate, hovertext3)
 	data4 = data(dfcess,"Rainbow",texttemplate, hovertext4)
+	data5 = data(dfcess,"Rainbow",texttemplate, hovertext5)
 	datatot1 = data(dfcgststotal,"Rainbow",texttemplate, hovertexttot1)
 	datatot2 = data(dfsgsttotal,"Rainbow",texttemplate, hovertexttot2)
 	datatot3 = data(dfigsttotal,"Rainbow",texttemplate, hovertexttot3)
 	datatot4 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot4)
+	datatot5 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot5)
 
 
 	#defining the figure object of individual heatmaps
@@ -674,10 +681,12 @@ if selected_metric == "GST India":
 	fig2 = go.Figure(data=data2)
 	fig3 = go.Figure(data=data3)
 	fig4 = go.Figure(data=data4)
+	fig5 = go.Figure(data=data5)
 	figtot1 = go.Figure(data=datatot1)
 	figtot2 = go.Figure(data=datatot2)
 	figtot3 = go.Figure(data=datatot3)
 	figtot4 = go.Figure(data=datatot4)
+	figtot5 = go.Figure(data=datatot5)
 
 
 	#dictionary for defining the title of the heatmaps renders on the screen
@@ -703,16 +712,25 @@ if selected_metric == "GST India":
 						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
 						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
+	x_axis_title_dict5 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
+						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
+						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
+	x_axis_title_gen_dict5 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
+						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
+						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
+
 
 	#updating the figure of individual heatmaps
 	figupdategst(fig1, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 	figupdategst(fig2, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 	figupdategst(fig3, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 	figupdategst(fig4, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig5, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 	figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
 	figupdategsttot(figtot2, dfsgsttotal, dates, x_axis_title_gen_dict2, 150, tickvals, hoverlabel_bgcolor)
 	figupdategsttot(figtot3, dfigsttotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
-	figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
+	figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict4, 150, tickvals, hoverlabel_bgcolor)
+	figupdategsttot(figtot5, dfcesstotal, dates, x_axis_title_gen_dict5, 150, tickvals, hoverlabel_bgcolor)
 
 
 	#Final plotting of various charts on the output page
