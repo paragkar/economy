@@ -645,6 +645,7 @@ if selected_metric == "GST India":
 	dfsgst = dfsgst.head(20)
 	dfigst = dfigst.head(20)
 	dfcess = dfcess.head(20)
+	dfgstall = dfgstall.head(20)
 
 	#calculating their percent share of total
 
