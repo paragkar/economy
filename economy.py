@@ -745,6 +745,13 @@ if selected_metric == "GST India":
 	figupdategsttot(figtot5, dfcesstotal, dates, x_axis_title_gen_dict5, 150, tickvals, hoverlabel_bgcolor)
 
 
+	figupdategst(fig11, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig12, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig13, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig14, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+
+
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
 	st.plotly_chart(fig11, use_container_width=True)
