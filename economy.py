@@ -598,8 +598,6 @@ if selected_metric == "GST India":
 
 	dfgstall = dfcgsts+dfsgst+dfigst+dfcess
 
-	st.write(dfgstall)
-
 	#selecting the date for sorting the dataframe
 	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfcgsts.columns), reverse = True), 0)
 
@@ -608,12 +606,15 @@ if selected_metric == "GST India":
 	dfsgst = dfsgst.sort_values(sort_by_date, ascending = False)
 	dfigst = dfigst.sort_values(sort_by_date, ascending = False)
 	dfcess = dfcess.sort_values(sort_by_date, ascending = False)
+	dfgstall = dfgstall.sort_values(sort_by_date, ascending = False)
 
 	dfcgststotal = dfcgsts.sum(axis=0).to_frame().T
 	dfsgsttotal = dfsgst.sum(axis=0).to_frame().T
 	dfigsttotal = dfigst.sum(axis=0).to_frame().T
 	dfcesstotal = dfcess.sum(axis=0).to_frame().T
+	dfgstalltotal = dfgstall.sum(axis=0).to_frame().T
 
+	st.write(dfgstalltotal)
 
 	#selecting the dates for list on the xaxis of the heatmap
 	dates = dfcgsts.columns
