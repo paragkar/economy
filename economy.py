@@ -594,6 +594,12 @@ if selected_metric == "GST India":
 	dfigst = dfigst[date_range_list].replace(np.nan,0).round(1)
 	dfcess = dfcess[date_range_list].replace(np.nan,0).round(1)
 
+	#Total GST collection which we get by adding all
+
+	dfgstall = dfcgsts+dfsgst+dfigst+dfcess
+
+	st.write(dfgstall)
+
 	#selecting the date for sorting the dataframe
 	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfcgsts.columns), reverse = True), 0)
 
@@ -641,9 +647,12 @@ if selected_metric == "GST India":
 	dfigst = dfigst.head(20)
 	dfcess = dfcess.head(20)
 
-	dfcgstsprec = round((dfcgsts/dfcgststotal.values)*100,1)
+	#calculating their percent share of total
 
-	st.write(dfcgstsprec)
+	dfcgstsprec = round((dfcgsts/dfcgststotal.values)*100,1)
+	dfsgstprec = round((dfsgst/dfsgsttotal.values)*100,1)
+	dfigst = round((dfigst/dfigsttotal.values)*100,1)
+	dfcess = round((dfcess/dfcesstotal.values)*100,1)
 
 
 	#calculating data for individual figures of heatmaps
