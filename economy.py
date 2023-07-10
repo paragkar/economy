@@ -635,7 +635,7 @@ if selected_metric == "GST India":
 		tickvals = years
 
 	#preparing hovertext for each dataframe
-	hovertext1 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,,dfgstall,1)
+	hovertext1 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,1)
 	hovertext2 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,2)
 	hovertext3 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,3)
 	hovertext4 = htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall,4)
