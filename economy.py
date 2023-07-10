@@ -668,12 +668,18 @@ if selected_metric == "GST India":
 	data2 = data(dfsgst,"Rainbow",texttemplate, hovertext2)
 	data3 = data(dfigst,"Rainbow",texttemplate, hovertext3)
 	data4 = data(dfcess,"Rainbow",texttemplate, hovertext4)
-	data5 = data(dfcess,"Rainbow",texttemplate, hovertext5)
+	data5 = data(dfgstall,"Rainbow",texttemplate, hovertext5)
 	datatot1 = data(dfcgststotal,"Rainbow",texttemplate, hovertexttot1)
 	datatot2 = data(dfsgsttotal,"Rainbow",texttemplate, hovertexttot2)
 	datatot3 = data(dfigsttotal,"Rainbow",texttemplate, hovertexttot3)
 	datatot4 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot4)
 	datatot5 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot5)
+
+	data11 = data(dfcgstsprec,"Rainbow",texttemplate, hovertext1)
+	data12 = data(dfsgstprec,"Rainbow",texttemplate, hovertext2)
+	data13 = data(dfigstprec,"Rainbow",texttemplate, hovertext3)
+	data14 = data(dfcessprec,"Rainbow",texttemplate, hovertext4)
+	data15 = data(dfgstallprec,"Rainbow",texttemplate, hovertext5)
 
 
 	#defining the figure object of individual heatmaps
@@ -687,6 +693,12 @@ if selected_metric == "GST India":
 	figtot3 = go.Figure(data=datatot3)
 	figtot4 = go.Figure(data=datatot4)
 	figtot5 = go.Figure(data=datatot5)
+
+	fig11 = go.Figure(data=data11)
+	fig12 = go.Figure(data=data12)
+	fig13 = go.Figure(data=data13)
+	fig14 = go.Figure(data=data14)
+	fig15 = go.Figure(data=data15)
 
 
 	#dictionary for defining the title of the heatmaps renders on the screen
@@ -735,7 +747,7 @@ if selected_metric == "GST India":
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
-	st.plotly_chart(fig1, use_container_width=True)
+	st.plotly_chart(fig11, use_container_width=True)
 	st.plotly_chart(figtot1, use_container_width=True)
 
 
