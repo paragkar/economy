@@ -601,7 +601,7 @@ if selected_metric == "GST India":
 
 	#Total GST collection which we get by adding all
 
-	dfgstall = dfcgsts+dfsgst+dfigst+dfcess
+	dfgstall = (dfcgsts+dfsgst+dfigst+dfcess).round(1)
 
 	#selecting the date for sorting the dataframe
 	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfcgsts.columns), reverse = True), 0)
