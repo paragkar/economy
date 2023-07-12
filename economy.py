@@ -309,11 +309,11 @@ def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall, datano):
 				     .format(
 					    xx,
 					    yy,
-					    cgst,
-					    sgst,
-					    igst,
-					    cess,
-					    gstall,
+					    round(cgst,1),
+					    round(sgst,1),
+					    round(igst,1),
+					    round(cess,1),
+					    round(gstall,1),
 					    )
 					    )
 	return hovertext
@@ -699,38 +699,6 @@ if selected_metric == "GST India":
 	fig13 = go.Figure(data=data13)
 	fig14 = go.Figure(data=data14)
 	fig15 = go.Figure(data=data15)
-
-
-	#dictionary for defining the title of the heatmaps renders on the screen
-	x_axis_title_dict1 = {"RuralIndex":"<b>Indian CPI Rural Trend<b>", "UrbanIndex":"<b>Indian CPI Urban Trend<b>", "CombIndex":
-						"<b>Indian CPI Combined Trend<b>"}
-	x_axis_title_gen_dict1 = {"RuralIndex":"<b>Indian CPI General Rural Trend<b>", "UrbanIndex":"<b>Indian CPI General Urban Trend<b>", "CombIndex":
-						"<b>Indian CPI General Combined Trend<b>"}
-	x_axis_title_dict2 = {"RuralIndex":"<b>Indian CPI Rural % Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % Inflation Trend<b>", "CombIndex":
-						"<b>Indian CPI Combined % Inflation Trend<b>"}
-	x_axis_title_gen_dict2 = {"RuralIndex":"<b>Indian CPI Rural % General Inflation Trend<b>", "UrbanIndex":"<b>Indian CPI Urban % General Inflation Trend<b>", "CombIndex":
-						"<b>Indian CPI Combined % General Inflation Trend<b>"}
-	x_axis_title_dict3 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
-						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
-						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
-	x_axis_title_gen_dict3 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
-						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
-						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
-
-	x_axis_title_dict4 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
-						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
-						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
-	x_axis_title_gen_dict4 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
-						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
-						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
-
-	x_axis_title_dict5 = {"RuralIndex":"<b>Indian CPI Rural (Basis Points) Contribution to Overall Inflation<b>", 
-						  "UrbanIndex":"<b>Indian CPI Urban (Basis Points) Contribution to Overall Inflation<b>", 
-						  "CombIndex": "<b>Indian CPI Combined (Basis Points) Contribution to Overall Inflation<b>"}
-	x_axis_title_gen_dict5 = {"RuralIndex":"<b>Indian CPI Rural Total Inflation Trend (Basis Points)<b>", 
-						      "UrbanIndex":"<b>Indian CPI Urban Total Inflation Trend (Basis Points)<b>", 
-						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
-
 
 
 	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
