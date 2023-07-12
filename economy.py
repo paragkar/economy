@@ -754,8 +754,8 @@ if selected_metric == "GST India":
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
-	st.plotly_chart(fig11, use_container_width=True)
-	st.plotly_chart(figtot1, use_container_width=True)
+	st.plotly_chart(fig12, use_container_width=True)
+	st.plotly_chart(figtot2, use_container_width=True)
 
 
 
