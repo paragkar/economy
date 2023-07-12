@@ -752,10 +752,18 @@ if selected_metric == "GST India":
 	figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 
 
+	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS"])
+
+
+	gst_metric_dict = {"CGST" : fig1}
+
+	gst_metric_total_dict = {"CGST" : figtot1}
+
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
-	st.plotly_chart(fig12, use_container_width=True)
-	st.plotly_chart(figtot2, use_container_width=True)
+
+	st.plotly_chart(gst_metric_dict[selected_gst_metric], use_container_width=True)
+	st.plotly_chart(gst_metric_total_dict[selected_gst_metric], use_container_width=True)
 
 
 
