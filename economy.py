@@ -732,24 +732,24 @@ if selected_metric == "GST India":
 						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
 
-	#updating the figure of individual heatmaps
-	figupdategst(fig1, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig2, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig3, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig4, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig5, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
-	figupdategsttot(figtot2, dfsgsttotal, dates, x_axis_title_gen_dict2, 150, tickvals, hoverlabel_bgcolor)
-	figupdategsttot(figtot3, dfigsttotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
-	figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict4, 150, tickvals, hoverlabel_bgcolor)
-	figupdategsttot(figtot5, dfcesstotal, dates, x_axis_title_gen_dict5, 150, tickvals, hoverlabel_bgcolor)
+	# #updating the figure of individual heatmaps
+	# figupdategst(fig1, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig2, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig3, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig4, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig5, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
+	# figupdategsttot(figtot2, dfsgsttotal, dates, x_axis_title_gen_dict2, 150, tickvals, hoverlabel_bgcolor)
+	# figupdategsttot(figtot3, dfigsttotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
+	# figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict4, 150, tickvals, hoverlabel_bgcolor)
+	# figupdategsttot(figtot5, dfcesstotal, dates, x_axis_title_gen_dict5, 150, tickvals, hoverlabel_bgcolor)
 
 
-	figupdategst(fig11, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig12, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig13, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig14, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig11, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig12, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig13, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig14, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	# figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 
 
 	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
@@ -762,6 +762,12 @@ if selected_metric == "GST India":
 	gst_metric_prec_dict = {"CGST" : fig11, "SGST": fig12, "IGST": fig13, "CESS":fig14,"Total":fig15}
 
 	gst_metric_total_dict = {"CGST" : figtot1, "SGST": figtot2, "IGST": figtot3, "CESS":figtot4,"Total":figtot5}
+
+
+	#updating the figure of individual heatmaps
+	figupdategst(gst_metric_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(gst_metric_prec_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategsttot(gst_metric_total_dict[selected_gst_metric], dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
