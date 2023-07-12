@@ -176,8 +176,8 @@ def figupdatecpigen(fig, df, dates, x_title_dict, selected_feature, height, tick
 def figupdategst(fig, df, dates, x_title_dict,height, tickvals, hoverlabel_bgcolor, sort_by_date):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  # xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature]+\
-					  # 				" (Sort Date - "+str(sort_by_date)+")",
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict+\
+					  				" (Sort Date - "+str(sort_by_date)+")",
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
@@ -209,7 +209,7 @@ def figupdategst(fig, df, dates, x_title_dict,height, tickvals, hoverlabel_bgcol
 def figupdategsttot(fig, df, dates, x_title_dict, height, tickvals, hoverlabel_bgcolor):
 	fig.update_layout(uniformtext_minsize=14, 
 					  uniformtext_mode='hide', 
-					  # xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict[selected_feature],
+					  xaxis_title= "<span style='text-decoration: underline; color: red;'>"+x_title_dict,
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
@@ -732,25 +732,6 @@ if selected_metric == "GST India":
 						      "CombIndex": "<b>Indian CPI Combined Total Inflation Trend (Basis Points)<b>"}
 
 
-	# #updating the figure of individual heatmaps
-	# figupdategst(fig1, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig2, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig3, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig4, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig5, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
-	# figupdategsttot(figtot2, dfsgsttotal, dates, x_axis_title_gen_dict2, 150, tickvals, hoverlabel_bgcolor)
-	# figupdategsttot(figtot3, dfigsttotal, dates, x_axis_title_gen_dict3, 150, tickvals, hoverlabel_bgcolor)
-	# figupdategsttot(figtot4, dfcesstotal, dates, x_axis_title_gen_dict4, 150, tickvals, hoverlabel_bgcolor)
-	# figupdategsttot(figtot5, dfcesstotal, dates, x_axis_title_gen_dict5, 150, tickvals, hoverlabel_bgcolor)
-
-
-	# figupdategst(fig11, dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig12, dfcgsts, dates, x_axis_title_dict2, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig13, dfcgsts, dates, x_axis_title_dict3, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig14, dfcgsts, dates, x_axis_title_dict4, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	# figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-
 
 	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
 
@@ -764,10 +745,33 @@ if selected_metric == "GST India":
 	gst_metric_total_dict = {"CGST" : figtot1, "SGST": figtot2, "IGST": figtot3, "CESS":figtot4,"Total":figtot5}
 
 
+	x_axis_title_dict_abs = {"CGST":"<b>Indian CGST Collection Trends - Absolute (Rs Cr)<b>", 
+							"SGST":"<b>Indian SGST Collection Trends - Absolute (Rs Cr)<b>", 
+							"IGST": "<b>Indian IGST Collection Trends - Absolute (Rs Cr)<b>", 
+							"CESS" :"<b>Indian SGST Collection Trends - Absolute (Rs Cr)<b>",
+							"Total": "<b>Indian Total Collection Trends - Absolute (Rs Cr)<b>"}
+
+
+	x_axis_title_dict_perc = {"CGST":"<b>Indian CGST Collection Trends - % of Total<b>", "SGST":"<b>Indian SGST Collection Trends - % of Total<b>", 
+							"IGST": "<b>Indian IGST Collection Trends - % of Total<b>", "CESS" :"<b>Indian SGST Collection Trends - % of Total<b>",
+							"Total": "<b>Indian Total Collection Trends - % of Total<b>"}
+
+
+	x_axis_title_dict_total = {"CGST":"<b>Indian CGST Collection Trends - Grand Total (Rs Cr)<b>", 
+							"SGST":"<b>Indian SGST Collection Trends - Grand Total (Rs Cr)<b>", 
+							"IGST": "<b>Indian IGST Collection Trends - Grand Total (Rs Cr)<b>", 
+							"CESS" :"<b>Indian SGST Collection Trends - Grand Total (Rs Cr)<b>",
+							"Total": "<b>Indian Total Collection Trends - Grand Total (Rs Cr)<b>"}
+
+
+
 	#updating the figure of individual heatmaps
-	figupdategst(gst_metric_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(gst_metric_prec_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict1, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategsttot(gst_metric_total_dict[selected_gst_metric], dfcgststotal, dates, x_axis_title_gen_dict1, 150, tickvals,hoverlabel_bgcolor)
+	figupdategst(gst_metric_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict_abs[selected_gst_metric], 
+				650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(gst_metric_prec_dict[selected_gst_metric], dfcgsts, dates, x_axis_title_dict_perc[selected_gst_metric], 
+				650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategsttot(gst_metric_total_dict[selected_gst_metric], dfcgststotal, dates, x_axis_title_dict_total[selected_gst_metric], 
+				150, tickvals,hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
