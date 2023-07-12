@@ -752,12 +752,12 @@ if selected_metric == "GST India":
 	figupdategst(fig15, dfcgsts, dates, x_axis_title_dict5, 650, tickvals, hoverlabel_bgcolor, sort_by_date)
 
 
-	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS"])
+	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
 
 
-	gst_metric_dict = {"CGST" : fig1}
+	gst_metric_dict = {"CGST" : fig1, "SGST": fig2, "IGST": fig3, "CESS":fig4,"Total":fig5}
 
-	gst_metric_total_dict = {"CGST" : figtot1}
+	gst_metric_total_dict = {"CGST" : figtot1, "SGST": figtot2, "IGST": figtot3, "CESS":figtot4,"Total":figtot5}
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
