@@ -755,15 +755,23 @@ if selected_metric == "GST India":
 	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
 
 
+	tab1, tab2 = st.tabs(["GST Abs", "GST % of Total"])
+
 	gst_metric_dict = {"CGST" : fig1, "SGST": fig2, "IGST": fig3, "CESS":fig4,"Total":fig5}
+
+	gst_metric_prec_dict = {"CGST" : fig11, "SGST": fig12, "IGST": fig13, "CESS":fig14,"Total":fig15}
 
 	gst_metric_total_dict = {"CGST" : figtot1, "SGST": figtot2, "IGST": figtot3, "CESS":figtot4,"Total":figtot5}
 
 	#Final plotting of various charts on the output page
 	style = "<style>h3 {text-align: left;}</style>"
 
-	st.plotly_chart(gst_metric_dict[selected_gst_metric], use_container_width=True)
-	st.plotly_chart(gst_metric_total_dict[selected_gst_metric], use_container_width=True)
+	with tab1:
+		st.plotly_chart(gst_metric_dict[selected_gst_metric], use_container_width=True)
+		st.plotly_chart(gst_metric_total_dict[selected_gst_metric], use_container_width=True)
+	with tab2:
+		st.plotly_chart(gst_metric_prec_dict[selected_gst_metric], use_container_width=True)
+		st.plotly_chart(gst_metric_total_dict[selected_gst_metric], use_container_width=True)
 
 
 
