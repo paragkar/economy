@@ -673,7 +673,7 @@ if selected_metric == "GST India":
 	datatot2 = data(dfsgsttotal,"Rainbow",texttemplate, hovertexttot2)
 	datatot3 = data(dfigsttotal,"Rainbow",texttemplate, hovertexttot3)
 	datatot4 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot4)
-	datatot5 = data(dfcesstotal,"Rainbow",texttemplate, hovertexttot5)
+	datatot5 = data(dfgstalltotal,"Rainbow",texttemplate, hovertexttot5)
 
 	data11 = data(dfcgstsprec,"Rainbow",texttemplate, hovertext1)
 	data12 = data(dfsgstprec,"Rainbow",texttemplate, hovertext2)
