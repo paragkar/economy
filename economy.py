@@ -736,7 +736,7 @@ if selected_metric == "GST India":
 	selected_gst_metric = st.sidebar.selectbox("Select a GST Metric", ["CGST", "SGST", "IGST", "CESS", "Total"])
 
 
-	tab1, tab2 = st.tabs(["GST Abs", "GST % of Total"])
+	tab1, tab2 = st.tabs(["GST Absolute", "GST % of Total"])
 
 	gst_metric_dict = {"CGST" : fig1, "SGST": fig2, "IGST": fig3, "CESS":fig4,"Total":fig5}
 
