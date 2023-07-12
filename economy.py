@@ -622,6 +622,8 @@ if selected_metric == "GST India":
 
 	dfcgststotal.index.name = "India"
 
+	st.write(dfcgststotal)
+
 	#selecting the dates for list on the xaxis of the heatmap
 	dates = dfcgsts.columns
 
