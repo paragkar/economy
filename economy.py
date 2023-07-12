@@ -605,6 +605,8 @@ if selected_metric == "GST India":
 
 	dfgstall.index.name ="India"
 
+	st.write(dfgstall)
+
 	#selecting the date for sorting the dataframe
 	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfcgsts.columns), reverse = True), 0)
 
