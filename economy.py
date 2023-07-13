@@ -767,7 +767,7 @@ if selected_metric == "GST India":
 
 if selected_metric == "GST State Settle":
 
-	dfgststatesettle = df["GST_State_Settlement"]
+	dfgststatesettle = df["GST_State_Settlement"].set_index("State")
 
 	st.write(dfgststatesettle)
 
