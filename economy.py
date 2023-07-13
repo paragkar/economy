@@ -495,10 +495,8 @@ if selected_metric in ["CPI India", "CPI States"]:
 	dfinflation = dfinflation.replace(0,np.nan).dropna(axis=0, how='all')
 	dfinfweighted = dfinfweighted.replace(0,np.nan).dropna(axis=0, how='all')
 
-	if selected_metric == "CPI_States":
+	if selected_metric == "CPI States":
 		dfindex = dfindex.head(20)
-
-		st.write(dfindex)
 		dfinflation = dfinflation.head(20)
 		dfinfweighted = dfinfweighted.head(20)
 
