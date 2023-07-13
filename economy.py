@@ -765,11 +765,11 @@ if selected_metric == "GST India":
 		st.plotly_chart(gst_metric_prec_dict[selected_gst_metric], use_container_width=True)
 		st.plotly_chart(gst_metric_total_dict[selected_gst_metric], use_container_width=True)
 
-	if selected_metric == "GST State Settle":
+if selected_metric == "GST State Settle":
 
-		dfgststatesettle = df["GST_State_Settlement"]
+	dfgststatesettle = df["GST_State_Settlement"]
 
-		st.write(dfgststatesettle)
+	st.write(dfgststatesettle)
 
 
 
