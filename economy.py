@@ -497,6 +497,8 @@ if selected_metric in ["CPI India", "CPI States"]:
 
 	if selected_metric == "CPI_States":
 		dfindex = dfindex.head(20)
+
+		st.write(dfindex)
 		dfinflation = dfinflation.head(20)
 		dfinfweighted = dfinfweighted.head(20)
 
