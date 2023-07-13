@@ -495,6 +495,11 @@ if selected_metric in ["CPI India", "CPI States"]:
 	dfinflation = dfinflation.replace(0,np.nan).dropna(axis=0, how='all')
 	dfinfweighted = dfinfweighted.replace(0,np.nan).dropna(axis=0, how='all')
 
+	if selected_metric = "CPI_States":
+		dfindex = dfindex.head(20)
+		dfinflation = dfinflation.head(20)
+		dfinfweighted = dfinfweighted.head(20)
+
 
 	#preparing hovertext for each dataframe
 	hovertext1 = htext_cpi(dfindex, dfinflation, dfinfweighted,1)
