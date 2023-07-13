@@ -769,6 +769,8 @@ if selected_metric == "GST State Settle":
 
 	dfgststatesettle = df["GST_State_Settlement"].set_index("State")
 
+	dfgststatesettle.columns = [x.date() for x in dfgststatesettle.columns]
+
 	st.write(dfgststatesettle)
 
 
