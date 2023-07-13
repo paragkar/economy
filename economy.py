@@ -495,11 +495,6 @@ if selected_metric in ["CPI India", "CPI States"]:
 	dfinflation = dfinflation.replace(0,np.nan).dropna(axis=0, how='all')
 	dfinfweighted = dfinfweighted.replace(0,np.nan).dropna(axis=0, how='all')
 
-	if selected_metric == "CPI States":
-		dfindex = dfindex.head(20)
-		dfinflation = dfinflation.head(20)
-		dfinfweighted = dfinfweighted.head(20)
-
 
 	#preparing hovertext for each dataframe
 	hovertext1 = htext_cpi(dfindex, dfinflation, dfinfweighted,1)
@@ -509,6 +504,12 @@ if selected_metric in ["CPI India", "CPI States"]:
 	hovertextgen2 = htext_cpi(genindex, geninflation, geninfweighted,2)
 	hovertextgen3 = htext_cpi(genindex, geninflation, geninfweighted,3)
 	hoverlabel_bgcolor = "#000000" #subdued black
+
+
+	if selected_metric == "CPI States":
+		dfindex = dfindex.head(20)
+		dfinflation = dfinflation.head(20)
+		dfinfweighted = dfinfweighted.head(20)
 
 
 	#calculating data for individual figures of heatmaps
