@@ -771,6 +771,8 @@ if selected_metric == "GST State Settle":
 
 	dfgststatesettle.columns = [x.date() for x in dfgststatesettle.columns]
 
+	dfgststatesettle = pd.to_numeric(dfgststatesettle errors='coerce')
+
 	st.write(dfgststatesettle)
 
 
