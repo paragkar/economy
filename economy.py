@@ -100,7 +100,7 @@ def data(df,colorscale,texttemplate, hovertext):
 		colorscale=colorscale,
 		showscale=False,
 		texttemplate=texttemplate,
-		textfont={"size":8},
+		textfont={"size":10},
 		# reversescale=True,
 						),
 			]
