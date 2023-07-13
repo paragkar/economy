@@ -181,7 +181,7 @@ def figupdategst(fig, df, dates, x_title_dict,height, tickvals, hoverlabel_bgcol
 					  xaxis_title_font=dict(size=18),
 					  yaxis_title=None, 
 					  yaxis_autorange='reversed',
-					  font=dict(size=10),
+					  font=dict(size=12),
 					  template='simple_white',
 					  paper_bgcolor=None,
 					  height=height, 
