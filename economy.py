@@ -791,9 +791,27 @@ if selected_metric == "GST State Settle":
 
 	dfgststatesettle = dfgststatesettle.sort_values(sort_by_date, ascending = False)
 
-	# dfgststatesettle = [pd.to_numeric(dfgststatesettle[col], errors='coerce') for col in dfgststatesettle.columns]
+	dfgststatesettletotal = dfgststatesettle.sum(axis=0).to_frame().T
 
-	st.write(dfgststatesettle)
+	dfgststatesettletotal.rename(index={0:"India"}, inplace = True)
+
+
+	#selecting the dates for list on the xaxis of the heatmap
+	dates = dfgststatesettle.columns
+
+	#selecting the years for list on the xaxis when selected dates goes beyond chosen value of 36
+	years = sorted(list(set([x.year for x in list(dfgststatesettle.columns)])))
+
+
+	#the logic for seleting the texttemplete and tickvals if date range goes beyond a number of months
+	if no_of_months <= 36:
+		texttemplate ="%{z:.1f}"
+		tickvals = dates
+	else:
+		texttemplate =""
+		tickvals = years
+
+	st.write(dfgststatesettletotal)
 
 
 
