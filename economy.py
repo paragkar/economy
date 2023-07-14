@@ -850,7 +850,7 @@ if selected_metric == "GST State Settle":
 
 
 	#preparing hovertext for each dataframe
-	hovertext1 = htext_cpi(dfgststatesettle, dfgststatesettleperc)
+	hovertext1 = htext_gst_state_settlement(dfgststatesettle, dfgststatesettleperc)
 	
 
 	#calculating data for individual figures of heatmaps
