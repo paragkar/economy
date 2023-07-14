@@ -771,6 +771,9 @@ if selected_metric == "GST State Settle":
 
 	dfgststatesettle.columns = [x.date() for x in dfgststatesettle.columns]
 
+	#selecting the date for sorting the dataframe
+	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfgststatesettle.columns), reverse = True), 0)
+
 	# dfgststatesettle = [pd.to_numeric(dfgststatesettle[col], errors='coerce') for col in dfgststatesettle.columns]
 
 	st.write(dfgststatesettle)
