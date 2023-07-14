@@ -870,23 +870,26 @@ if selected_metric == "GST State Settle":
 	tab1, tab2 = st.tabs(["GST State Settlement Absolute", "GST State Settlement % of Total"])
 
 
-	x_axis_title_abs = "<b>Indian GST State Settlement Trends - Absolute (Rs Cr)<b>", 
+	x_axis_title_abs_dict = {"GST State Settle": "<b>Indian GST State Settlement Trends - Absolute (Rs Cr)<b>"}
 							
 
-	x_axis_title_perc = "<b>Indian GST State Settlement Trends - % of Total<b>"
+	x_axis_title_perc_dict = {"GST State Settle": "<b>Indian GST State Settlement Trends - % of Total<b>"}
 							
 
-	x_axis_title_total = "<b>Indian GST State Settlement Trends - Grand Total (Rs Cr)<b>", 
+	x_axis_title_total_dict = {"GST State Settle": "<b>Indian GST State Settlement Trends - Grand Total (Rs Cr)<b>"}
+
+
+	selected_feature = "GST State Settle"
 
 
 	hoverlabel_bgcolor = "#000000" #subdued black						
 
 	#updating the figure of individual heatmaps
-	figupdategst(fig1, dfgststatesettle, dates, x_axis_title_abs, 
+	figupdategst(fig1, dfgststatesettle, dates, x_axis_title_abs_dict, 
 				650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig11, dfgststatesettle, dates, x_axis_title_perc, 
+	figupdategst(fig11, dfgststatesettle, dates, x_axis_title_perc_dict, 
 				650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategsttot(figtot1, dfgststatesettletotal, dates, x_axis_title_total, 
+	figupdategsttot(figtot1, dfgststatesettletotal, dates, x_axis_title_total_dict, 
 				150, tickvals,hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
