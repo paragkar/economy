@@ -771,6 +771,21 @@ if selected_metric == "GST State Settle":
 
 	dfgststatesettle.columns = [x.date() for x in dfgststatesettle.columns]
 
+	start_date, end_date = st.select_slider("Select Range of Dates", 
+						options = list(dfcgsts.columns), value =(dfcgsts.columns[-18],dfcgsts.columns[-1]))
+
+	#calculating the difference in number of months between selected dates
+	delta = relativedelta(end_date, start_date)
+
+	no_of_months = delta.years * 12 + delta.months
+
+	#selecting the date for filtering the dataframe
+	date_range_list = get_selected_date_list(list(dfgststatesettle.columns), start_date, end_date)
+
+	#filtering the dataframe with the selected range of dates
+	dfgststatesettle = dfgststatesettle[date_range_list].replace(np.nan,0).round(1)
+
+
 	#selecting the date for sorting the dataframe
 	sort_by_date = st.sidebar.selectbox("Select Sorting Date", sorted(list(dfgststatesettle.columns), reverse = True), 0)
 
