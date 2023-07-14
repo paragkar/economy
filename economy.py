@@ -318,6 +318,34 @@ def htext_gst(dfcgsts, dfsgst, dfigst,dfcess,dfgstall, datano):
 					    )
 	return hovertext
 
+#function for creating hovertext for gst settlement
+# @st.cache_resource
+def htext_gst_state_settlement(dfgststatesettle, dfgststatesettleperc):
+	
+	hovertext = []
+	for yi, yy in enumerate(dfgststatesettle.index):
+		hovertext.append([])
+		for xi, xx in enumerate(dfgststatesettle.columns):
+			
+			gststatesettle= dfgststatesettle.loc[yy,xx]
+			gststatesettleperc = dfgststatesettleperc.loc[yy, xx]
+			
+			hovertext[-1].append(
+					    'Date: {}\
+					     <br>State : {}\
+					     <br>GST State Settlement: {} Rs Cr\
+					     <br>GST State Settlement: {} % of Total'
+					   
+				     .format(
+					    xx,
+					    yy,
+					    round(gststatesettle,1),
+					    round(gststatesettleperc,1),
+					    )
+					    )
+	return hovertext
+
+
 
 #Loading the datafile
 df = loadecofile()
@@ -812,6 +840,64 @@ if selected_metric == "GST State Settle":
 		tickvals = years
 
 	st.write(dfgststatesettletotal)
+
+
+	#truncate the data to 20 states
+	dfgststatesettle = dfgststatesettle.head(20)
+
+	#calculating their percent share of total
+	dfgststatesettleperc = round((dfgststatesettle/dfgststatesettletotal.values)*100,1)
+
+
+	#preparing hovertext for each dataframe
+	hovertext1 = htext_cpi(dfgststatesettle, dfgststatesettleperc)
+	
+
+	#calculating data for individual figures of heatmaps
+	data1 = data(dfgststatesettle,"Rainbow",texttemplate, hovertext1)
+	
+	datatot1 = data(dfgststatesettletotal,"Rainbow",texttemplate, hovertexttot1)
+
+	data11 = data(dfgststatesettleperc,"Rainbow",texttemplate, hovertext1)
+
+
+	#defining the figure object of individual heatmaps
+	fig1 = go.Figure(data=data1)
+	
+	figtot1 = go.Figure(data=datatot1)
+
+	fig11 = go.Figure(data=data11)
+
+
+	tab1, tab2 = st.tabs(["GST State Settlement Absolute", "GST State Settlement % of Total"])
+
+
+	x_axis_title_abs = "<b>Indian GST State Settlement Trends - Absolute (Rs Cr)<b>", 
+							
+
+	x_axis_title_perc = "<b>Indian GST State Settlement Trends - % of Total<b>"
+							
+
+	x_axis_title_total = "<b>Indian GST State Settlement Trends - Grand Total (Rs Cr)<b>", 
+							
+
+	#updating the figure of individual heatmaps
+	figupdategst(fig1, dfcgsts, dates, x_axis_title_abs, 
+				650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategst(fig11, dfcgsts, dates, x_axis_title_perc, 
+				650, tickvals, hoverlabel_bgcolor, sort_by_date)
+	figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_total, 
+				150, tickvals,hoverlabel_bgcolor)
+
+	#Final plotting of various charts on the output page
+	style = "<style>h3 {text-align: left;}</style>"
+
+	with tab1:
+		st.plotly_chart(fig1, use_container_width=True)
+		st.plotly_chart(figtot1, use_container_width=True)
+	with tab2:
+		st.plotly_chart(fig11 , use_container_width=True)
+		st.plotly_chart(figtot1, use_container_width=True)
 
 
 
