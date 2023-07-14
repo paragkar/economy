@@ -839,8 +839,6 @@ if selected_metric == "GST State Settle":
 		texttemplate =""
 		tickvals = years
 
-	st.write(dfgststatesettletotal)
-
 
 	#truncate the data to 20 states
 	dfgststatesettle = dfgststatesettle.head(20)
@@ -882,11 +880,11 @@ if selected_metric == "GST State Settle":
 							
 
 	#updating the figure of individual heatmaps
-	figupdategst(fig1, dfcgsts, dates, x_axis_title_abs, 
+	figupdategst(fig1, dfgststatesettle, dates, x_axis_title_abs, 
 				650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategst(fig11, dfcgsts, dates, x_axis_title_perc, 
+	figupdategst(fig11, dfgststatesettle, dates, x_axis_title_perc, 
 				650, tickvals, hoverlabel_bgcolor, sort_by_date)
-	figupdategsttot(figtot1, dfcgststotal, dates, x_axis_title_total, 
+	figupdategsttot(figtot1, dfgststatesettletotal, dates, x_axis_title_total, 
 				150, tickvals,hoverlabel_bgcolor)
 
 	#Final plotting of various charts on the output page
