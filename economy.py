@@ -877,7 +877,9 @@ if selected_metric == "GST State Settle":
 							
 
 	x_axis_title_total = "<b>Indian GST State Settlement Trends - Grand Total (Rs Cr)<b>", 
-							
+
+
+	hoverlabel_bgcolor = "#000000" #subdued black						
 
 	#updating the figure of individual heatmaps
 	figupdategst(fig1, dfgststatesettle, dates, x_axis_title_abs, 
