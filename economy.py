@@ -856,7 +856,7 @@ if selected_metric == "GST State Settle":
 	#calculating data for individual figures of heatmaps
 	data1 = data(dfgststatesettle,"Rainbow",texttemplate, hovertext1)
 	
-	datatot1 = data(dfgststatesettletotal,"Rainbow",texttemplate, "")
+	datatot1 = data(dfgststatesettletotal,"Rainbow",texttemplate, [])
 
 	data11 = data(dfgststatesettleperc,"Rainbow",texttemplate, hovertext1)
 
