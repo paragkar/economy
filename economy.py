@@ -843,6 +843,8 @@ if selected_metric == "GST State Settle":
 	#truncate the data to 20 states
 	dfgststatesettle = dfgststatesettle.head(20)
 
+	st.write(dfgststatesettle) #debug
+
 	#calculating their percent share of total
 	dfgststatesettleperc = round((dfgststatesettle/dfgststatesettletotal.values)*100,1)
 
