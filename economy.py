@@ -846,11 +846,11 @@ if selected_metric == "GST State Settle":
 	#calculating their percent share of total
 	dfgststatesettleperc = round((dfgststatesettle/dfgststatesettletotal.values)*100,1)
 
-	st.write(dfgststatesettleperc) #debug
-
 
 	#preparing hovertext for each dataframe
 	hovertext1 = htext_gst_state_settlement(dfgststatesettle, dfgststatesettleperc)
+
+	st.write(hovertext1) #debug
 	
 
 	#calculating data for individual figures of heatmaps
