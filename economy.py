@@ -594,6 +594,8 @@ if selected_metric == "GST India":
 
 	dfgst = df["GST"]
 
+	st.write(dfgst) #debug
+
 	gst_state_dict = df["GST_State_Map"].set_index("State").to_dict()["StateCode"]
 
 	dfgst = dfgst.replace(gst_state_dict)
