@@ -698,11 +698,11 @@ if selected_metric == "GST India":
 
 	#calculating their percent share of total
 
-	dfcgstsprec = round((dfcgsts/dfcgststotal.values)*100,1)
-	dfsgstprec = round((dfsgst/dfsgsttotal.values)*100,1)
-	dfigstprec = round((dfigst/dfigsttotal.values)*100,1)
-	dfcessprec = round((dfcess/dfcesstotal.values)*100,1)
-	dfgstallprec = round((dfgstall/dfgstalltotal.values)*100,1)
+	dfcgstsprec = round((dfcgsts/dfcgststotal.values)*100,2)
+	dfsgstprec = round((dfsgst/dfsgsttotal.values)*100,2)
+	dfigstprec = round((dfigst/dfigsttotal.values)*100,2)
+	dfcessprec = round((dfcess/dfcesstotal.values)*100,2)
+	dfgstallprec = round((dfgstall/dfgstalltotal.values)*100,2)
 
 
 	#calculating data for individual figures of heatmaps
